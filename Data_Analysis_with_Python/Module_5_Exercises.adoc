@@ -1,0 +1,327 @@
+== Module {module-number}: Natual Language Processing
+
+[grid=none,frame=none,cols="25%a,75%a"]
+|===
+|image::agenda.svg[align="left",pdfwidth=50%]|Upon completion of these exercises, students should be able to:
+
+* Perform basic text processing tasks such as tokenization and sentiment analysis using TextBlob. _(Exercise {module-number}A)_
+* Explore NLTK's text corpora and implement advanced text analysis techniques such as sentiment analysis and text classification. _(Exercise {module-number}B)_
+* Fine-tune a pre-trained BERT model for sentiment analysis on a dataset of customer reviews. _(Exercise {module-number}C)_ 
+* Evaluate the performance of the fine-tuned BERT model and compare it with traditional NLP techniques. _(Exercise {module-number}D)_ 
+|===
+
+<<<
+
+=== Exercise {module-number}A - Perform basic text processing tasks such as tokenization and sentiment analysis using TextBlob.
+TextBlob is a Python library that provides a simple API for common natural language processing (NLP) tasks, including tokenization and sentiment analysis. Here's how you can perform these tasks using TextBlob:
+
+1. **Tokenization**: Tokenization is the process of breaking text into individual words or tokens. TextBlob provides a `words` property that can be used to tokenize text into words.
+
+2. **Sentiment Analysis**: Sentiment analysis is the process of determining the sentiment or opinion expressed in a piece of text. TextBlob provides a `sentiment` property that returns a tuple with two values: polarity and subjectivity. Polarity measures the sentiment's positivity or negativity (-1 to +1), while subjectivity measures how subjective or opinionated the text is (0 to 1).
+
+Here's a basic example demonstrating how to use TextBlob for tokenization and sentiment analysis:
+
+[source,python]
+----
+from textblob import TextBlob
+
+# Sample text for demonstration
+text = "TextBlob is a simple and easy-to-use library for text processing tasks. I love using it!"
+
+# Tokenization
+blob = TextBlob(text)
+tokens = blob.words
+
+print("Tokens:")
+print(tokens)
+
+# Sentiment Analysis
+sentiment = blob.sentiment
+polarity = sentiment.polarity
+subjectivity = sentiment.subjectivity
+
+print("\nSentiment Analysis:")
+print("Polarity:", polarity)
+print("Subjectivity:", subjectivity)
+
+Output:
+
+Tokens:
+['TextBlob', 'is', 'a', 'simple', 'and', 'easy-to-use', 'library', 'for', 'text', 'processing', 'tasks', 'I', 'love', 'using', 'it']
+
+Sentiment Analysis:
+Polarity: 0.46875
+Subjectivity: 0.625
+[source,python]
+----
+
+In this example:
+- We tokenize the sample text into individual words using the `words` property of TextBlob.
+- We perform sentiment analysis on the sample text using the `sentiment` property of TextBlob, which returns a tuple containing polarity and subjectivity scores.
+- The polarity score indicates a moderately positive sentiment, while the subjectivity score indicates that the text is somewhat subjective or opinionated.
+
+<<<
+
+=== Exercise {module-number}B - Explore NLTK's text corpora and implement advanced text analysis techniques such as sentiment analysis and text classification.
+
+NLTK (Natural Language Toolkit) is a powerful Python library for working with human language data. It provides easy-to-use interfaces to over 50 corpora and lexical resources, along with a suite of text processing libraries for classification, tokenization, stemming, tagging, parsing, and semantic reasoning.
+
+Here's a basic example of how you can use NLTK for sentiment analysis and text classification:
+
+1. **Sentiment Analysis**: NLTK provides a built-in sentiment analysis module that includes pre-trained models for analyzing sentiment in text. You can use these models to classify text as positive, negative, or neutral based on the sentiment expressed in the text.
+
+2. **Text Classification**: NLTK allows you to train your own text classifiers using machine learning algorithms such as Naive Bayes, Decision Trees, or Maximum Entropy classifiers. You can use these classifiers to categorize text into predefined classes or categories.
+
+Below is an example that demonstrates sentiment analysis and text classification using NLTK:
+
+[source,python]
+----
+import nltk
+from nltk.sentiment import SentimentIntensityAnalyzer
+from nltk.tokenize import word_tokenize
+from nltk.corpus import movie_reviews
+from nltk.classify import NaiveBayesClassifier
+from nltk.classify.util import accuracy
+
+# Download necessary NLTK resources
+nltk.download('punkt')
+nltk.download('movie_reviews')
+
+# Sentiment Analysis
+def analyze_sentiment(text):
+    sid = SentimentIntensityAnalyzer()
+    sentiment_score = sid.polarity_scores(text)['compound']
+    if sentiment_score > 0:
+        return 'Positive'
+    elif sentiment_score < 0:
+        return 'Negative'
+    else:
+        return 'Neutral'
+
+# Text Classification
+# Prepare training data
+documents = [(list(movie_reviews.words(fileid)), category)
+             for category in movie_reviews.categories()
+             for fileid in movie_reviews.fileids(category)]
+# Shuffle the documents
+import random
+random.shuffle(documents)
+
+# Define features extractor
+all_words = nltk.FreqDist(w.lower() for w in movie_reviews.words())
+word_features = list(all_words)[:2000]
+
+def document_features(document):
+    document_words = set(document)
+    features = {}
+    for word in word_features:
+        features['contains({})'.format(word)] = (word in document_words)
+    return features
+
+# Train Naive Bayes classifier
+featuresets = [(document_features(d), c) for (d,c) in documents]
+train_set, test_set = featuresets[100:], featuresets[:100]
+classifier = NaiveBayesClassifier.train(train_set)
+
+# Evaluate classifier accuracy
+print("Classifier Accuracy:", accuracy(classifier, test_set))
+
+# Test sentiment analysis
+text = "I love this movie. It's fantastic!"
+print("Sentiment Analysis Result:", analyze_sentiment(text))
+
+# Test text classification
+text = "This movie is a masterpiece."
+features = document_features(word_tokenize(text))
+print("Text Classification Result:", classifier.classify(features))
+----
+
+In this example:
+- We use NLTK's `SentimentIntensityAnalyzer` class for sentiment analysis, which returns a compound score indicating the sentiment polarity of the text.
+- We use NLTK's movie reviews corpus to train a Naive Bayes classifier for text classification. The classifier is trained to classify movie reviews as positive or negative.
+- We evaluate the accuracy of the classifier using a test set.
+- Finally, we test both sentiment analysis and text classification on sample texts.
+
+<<<
+
+=== Exercise {module-number}C - Fine-tune a pre-trained BERT model for sentiment analysis on a dataset of customer reviews.
+Fine-tuning a pre-trained BERT (Bidirectional Encoder Representations from Transformers) model for sentiment analysis on a dataset of customer reviews involves several steps. BERT is a state-of-the-art NLP model developed by Google that has achieved impressive results on various natural language understanding tasks.
+
+Here's a general outline of the process:
+
+1. **Prepare the Dataset**: Collect or create a dataset of customer reviews along with their corresponding sentiment labels (e.g., positive, negative, neutral).
+
+2. **Preprocess the Data**: Tokenize the text data and convert it into a format suitable for input into the BERT model. This typically involves tokenizing the text into subwords, adding special tokens such as `[CLS]` and `[SEP]`, and padding/truncating sequences to a fixed length.
+
+3. **Load the Pre-trained BERT Model**: Use a pre-trained BERT model (e.g., `bert-base-uncased`) from the Hugging Face `transformers` library.
+
+4. **Fine-tune the Model**: Fine-tune the pre-trained BERT model on the customer review dataset. This involves training the model on the dataset using supervised learning with a suitable loss function (e.g., cross-entropy loss) and an optimizer (e.g., Adam optimizer). During fine-tuning, you may freeze certain layers of the BERT model and/or use differential learning rates.
+
+5. **Evaluate the Model**: Evaluate the fine-tuned model on a separate validation set to assess its performance. You can use metrics such as accuracy, precision, recall, and F1-score to evaluate the model's performance.
+
+6. **Fine-tune Hyperparameters**: Fine-tune hyperparameters such as learning rate, batch size, number of epochs, and model architecture to improve performance.
+
+7. **Inference**: Once the model is trained and evaluated, you can use it to make predictions on new customer reviews to classify their sentiment.
+
+Here's a high-level Python code example using the Hugging Face `transformers` library for fine-tuning BERT for sentiment analysis:
+
+[source,python]
+----
+import torch
+from transformers import BertTokenizer, BertForSequenceClassification, AdamW
+from torch.utils.data import DataLoader, Dataset
+from sklearn.model_selection import train_test_split
+
+# Load and preprocess dataset
+class CustomerReviewDataset(Dataset):
+    def __init__(self, reviews, labels, tokenizer, max_length):
+        self.reviews = reviews
+        self.labels = labels
+        self.tokenizer = tokenizer
+        self.max_length = max_length
+
+    def __len__(self):
+        return len(self.reviews)
+
+    def __getitem__(self, idx):
+        review = str(self.reviews[idx])
+        label = self.labels[idx]
+        encoding = self.tokenizer(review, max_length=self.max_length, truncation=True, padding='max_length', return_tensors='pt')
+        return {
+            'input_ids': encoding['input_ids'].flatten(),
+            'attention_mask': encoding['attention_mask'].flatten(),
+            'labels': torch.tensor(label, dtype=torch.long)
+        }
+
+# Load pre-trained BERT model and tokenizer
+tokenizer = BertTokenizer.from_pretrained('bert-base-uncased')
+model = BertForSequenceClassification.from_pretrained('bert-base-uncased', num_labels=3)
+
+# Prepare dataset
+reviews = [...]  # List of customer reviews
+labels = [...]   # List of sentiment labels (0: negative, 1: neutral, 2: positive)
+train_reviews, val_reviews, train_labels, val_labels = train_test_split(reviews, labels, test_size=0.2, random_state=42)
+train_dataset = CustomerReviewDataset(train_reviews, train_labels, tokenizer, max_length=128)
+val_dataset = CustomerReviewDataset(val_reviews, val_labels, tokenizer, max_length=128)
+
+# Initialize DataLoader
+train_loader = DataLoader(train_dataset, batch_size=32, shuffle=True)
+val_loader = DataLoader(val_dataset, batch_size=32, shuffle=False)
+
+# Fine-tune BERT model
+optimizer = AdamW(model.parameters(), lr=2e-5)
+device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+model.to(device)
+
+for epoch in range(5):
+    model.train()
+    for batch in train_loader:
+        input_ids = batch['input_ids'].to(device)
+        attention_mask = batch['attention_mask'].to(device)
+        labels = batch['labels'].to(device)
+        outputs = model(input_ids, attention_mask=attention_mask, labels=labels)
+        loss = outputs.loss
+        loss.backward()
+        optimizer.step()
+        optimizer.zero_grad()
+
+    model.eval()
+    val_accuracy = 0
+    for batch in val_loader:
+        with torch.no_grad():
+            input_ids = batch['input_ids'].to(device)
+            attention_mask = batch['attention_mask'].to(device)
+            labels = batch['labels'].to(device)
+            outputs = model(input_ids, attention_mask=attention_mask)
+            predictions = torch.argmax(outputs.logits, dim=1)
+            val_accuracy += (predictions == labels).float().mean
+----
+
+<<<
+
+=== Exercise {module-number}D - Evaluate the performance of the fine-tuned BERT model and compare it with traditional NLP techniques.
+To evaluate the performance of the fine-tuned BERT model for sentiment analysis and compare it with traditional NLP techniques, we can follow these steps:
+
+1. **Data Preparation**: Prepare a dataset of customer reviews with corresponding sentiment labels (e.g., positive, negative, neutral).
+
+2. **Fine-tuning BERT**: Fine-tune a pre-trained BERT model using the prepared dataset for sentiment analysis. This involves training the BERT model on the customer reviews dataset and fine-tuning the model's parameters to improve its performance on sentiment analysis tasks.
+
+3. **Evaluation Metrics**: Select appropriate evaluation metrics for sentiment analysis, such as accuracy, precision, recall, F1-score, and ROC-AUC score.
+
+4. **Evaluation on Test Set**: Split the dataset into training and testing sets. Use the testing set to evaluate the performance of the fine-tuned BERT model and traditional NLP techniques.
+
+5. **Performance Comparison**: Compare the performance of the fine-tuned BERT model with traditional NLP techniques (e.g., Naive Bayes, SVM, Logistic Regression) using the selected evaluation metrics.
+
+6. **Statistical Analysis**: Conduct statistical tests (e.g., t-test) to determine if the performance difference between the fine-tuned BERT model and traditional NLP techniques is statistically significant.
+
+7. **Visualization**: Visualize the performance comparison results using appropriate plots or charts to provide a clear understanding of the differences in performance between the models.
+
+Here's a basic example of how you can perform these steps using Python libraries such as Hugging Face's Transformers for BERT and Scikit-learn for traditional NLP techniques:
+
+[source,python]
+----
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import accuracy_score, classification_report
+from transformers import BertTokenizer, BertForSequenceClassification, Trainer, TrainingArguments
+
+# Step 1: Data Preparation
+# Load and preprocess the dataset of customer reviews with sentiment labels
+
+# Step 2: Fine-tuning BERT
+# Load pre-trained BERT model and tokenizer
+tokenizer = BertTokenizer.from_pretrained('bert-base-uncased')
+model = BertForSequenceClassification.from_pretrained('bert-base-uncased', num_labels=3)  # Assuming 3 classes: positive, negative, neutral
+
+# Fine-tuning parameters
+training_args = TrainingArguments(
+    per_device_train_batch_size=4,
+    num_train_epochs=3,
+    learning_rate=2e-5,
+    logging_dir='./logs',
+)
+
+# Trainer
+trainer = Trainer(
+    model=model,
+    args=training_args,
+    train_dataset=train_dataset,
+    eval_dataset=eval_dataset,
+)
+
+# Fine-tune BERT model
+trainer.train()
+
+# Step 3: Evaluation Metrics
+def evaluate_model(model, test_dataset):
+    predictions = model.predict(test_dataset)
+    y_true = test_dataset['labels']
+    y_pred = predictions.predictions.argmax(-1)
+    accuracy = accuracy_score(y_true, y_pred)
+    report = classification_report(y_true, y_pred)
+    return accuracy, report
+
+# Step 4: Evaluation on Test Set
+# Split dataset into training and testing sets
+train_data, test_data = train_test_split(dataset, test_size=0.2, random_state=42)
+
+# Step 5: Performance Comparison
+# Evaluate fine-tuned BERT model
+accuracy_bert, report_bert = evaluate_model(model, test_data)
+
+# Evaluate traditional NLP techniques (e.g., Naive Bayes, SVM, Logistic Regression)
+
+# Step 6: Statistical Analysis
+# Perform statistical tests to compare the performance of BERT with traditional NLP techniques
+
+# Step 7: Visualization
+# Visualize the performance comparison results
+----
+
+In this example:
+- We fine-tune the pre-trained BERT model on the dataset of customer reviews for sentiment analysis.
+- We evaluate the fine-tuned BERT model using accuracy and classification report metrics.
+- We compare the performance of the fine-tuned BERT model with traditional NLP techniques using the same evaluation metrics.
+- We perform statistical tests to determine if the performance difference between the models is statistically significant.
+- Finally, we visualize the performance comparison results to provide insights into the differences in performance.
+
+<<<

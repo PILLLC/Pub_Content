@@ -1,0 +1,738 @@
+== Module {module-number}: Natual Language Processing
+:imagesdir: images
+:source-highlighter: rouge
+:icons: font
+
+image::PIL_Logo_2023.png[align="left", pdfwidth=25%]
+
+{SP}
+
+[discrete]
+=== Learning Objectives
+
+
+[grid=none,frame=none,cols="25%a,75%a"]
+|===
+|image::agenda.svg[align="left",pdfwidth=50%]|Upon completion of this module, students should be able to:
+
+* Understand the basics of natural language processing.
+* Learn to perform text processing tasks using TextBlob.
+* Explore advanced text analysis techniques using NLTK.
+* Learn to implement state-of-the-art NLP models like BERT for text classification and sentiment analysis.
+|
+|===
+
+<<<
+    
+=== Lesson {module-number}.1: Basics of Natural Language Processing
+
+[grid=none,frame=none,cols="25%a,75%a"]
+|===
+|image::bullseye.svg[align="left",pdfwidth=50%]|Natural Language Processing (NLP) is a subfield of artificial intelligence (AI) that focuses on the interaction between computers and human language. It involves the development of algorithms and techniques to enable computers to understand, interpret, and generate human language data in a meaningful way. 
+
+In this lesson, we'll explore the basics of NLP, including key concepts, tasks, and applications.
+|
+|===
+
+{SP}
+
+image::Basics of Natural Language Processing.png[pdfwidth=30%, pdfheight=30%]
+
+ifeval::["{artifact-type}" == "IG"]
+---
+*Instructor note:* The image shows a Python script that uses the TextBlob library, which is designed for processing textual data.
+endif::[]
+
+
+ifdef::artifact-type[]
+
+---
+* Natural Language Processing (NLP) encompasses a wide range of tasks, including text classification, sentiment analysis, named entity recognition, machine translation, and question answering.
+* Key concepts in NLP include tokenization, which involves breaking text into smaller units such as words or sentences, and stemming, which reduces words to their root form.
+* NLP techniques often leverage machine learning algorithms, such as neural networks and support vector machines, to analyze and process textual data.
+* Applications of NLP span various domains, including healthcare (clinical text analysis), finance (sentiment analysis of financial news), customer service (chatbots), and social media (topic modeling and trend analysis).
+
+endif::artifact-type[]
+
+
+<<<
+
+==== Introduction to Natural Language Processing
+
+[grid=none,frame=none,cols="50%a,50%a"]
+|===
+|
+* NLP enables computers to process and analyze natural language data, such as text and speech, to extract insights, automate tasks, and enable human-computer interaction. 
+* It draws upon techniques from linguistics, computer science, and machine learning to analyze and understand the structure and meaning of human language.
+|
+image::Introduction to Natural Language Processing.png[]
+|===
+
+ifeval::["{artifact-type}" == "IG"]
+---
+*Instructor note:* The image depicts a flowchart illustrating the typical steps in a Natural Language Processing (NLP) pipeline:
+
+1. **Sentence Segmentation**: Breaking down the raw text into sentences.
+2. **Tokenization**: Further breaking down sentences into individual words or tokens.
+3. **Part of Speech Tagging**: Assigning parts of speech to each token, such as noun, verb, adjective, etc.
+4. **Entity Detection**: Identifying entities within the text, such as people, places, and organizations.
+5. **Relation Detection**: Identifying relationships between different entities within the text.
+
+The process starts with raw text and, through these stages, derives structured information like lists of sentences, lists of tokens, and finally lists of entities and their relations. This structure is crucial for various applications, such as information extraction, machine translation, and sentiment analysis.
+endif::[]
+
+ifdef::artifact-type[]
+
+---
+* Natural Language Processing (NLP) plays a vital role in various applications, including sentiment analysis, chatbots, language translation, and text summarization.
+* NLP techniques involve tasks such as tokenization, part-of-speech tagging, named entity recognition, and syntactic parsing to analyze text data.
+* With the advent of deep learning, NLP models like Transformers have achieved remarkable performance in tasks such as language understanding and generation.
+
+endif::artifact-type[]
+
+<<<
+
+==== Key Concepts in Natural Language Processing
+[grid=none,frame=none,cols="50%a,50%a"]
+|===
+|
+- **Tokenization**
+- **Part-of-Speech Tagging**
+- **Named Entity Recognition**
+- **Sentiment Analysis**
+- **Text Classification**
+|
+image::Key Concepts in Natural Language Processing.png[]
+|===
+
+ifeval::["{artifact-type}" == "IG"]
+---
+*Instructor note:* The uploaded image shows a schematic representation of the training process in machine learning. This diagram encapsulates how a model learns from data by iteratively adjusting its parameters to minimize the loss, thereby improving the accuracy of its predictions over time. The loss function acts as a guide, indicating how well the model is performing.
+endif::[]
+
+
+ifdef::artifact-type[]
+
+---
+* **Dependency Parsing**: Dependency parsing is the process of analyzing the grammatical structure of a sentence to establish the relationships between words, such as identifying subject-verb relationships.
+* **Word Embeddings**: Word embeddings are numerical representations of words in a high-dimensional space, capturing semantic relationships between words based on their contexts.
+* **Topic Modeling**: Topic modeling is a technique used to extract latent topics or themes from a collection of text documents, facilitating document clustering and summarization.
+* **Language Modeling**: Language modeling involves predicting the probability distribution of the next word in a sequence of words, enabling tasks such as speech recognition and machine translation.
+* **Named Entity Disambiguation**: Named Entity Disambiguation (NED) is the process of resolving ambiguous references to named entities by identif
+
+endif::artifact-type[]
+
+
+<<<
+
+
+==== Basic NLP Tasks and Techniques
+[grid=none,frame=none,cols="50%a,50%a"]
+|===
+|
+**Tokenization**
+
+**Part-of-Speech Tagging**
+
+**Named Entity Recognition**
+
+**Sentiment Analysis**
+
+**Applications of Natural Language Processing**
+
+**Text Mining and Information Retrieval**
+
+**Question Answering and Chatbots**
+
+**Machine Translation and Language Generation**
+
+|
+image::Basic NLP Tasks and Techniques.png[]
+|===
+
+ifeval::["{artifact-type}" == "IG"]
+---
+*Instructor note:* The image depicts the concept of text classification in Natural Language Processing (NLP). It shows several documents being categorized into different topics:
+
+1. A primary document labeled "Acme Article" is connected to three smaller documents, each representing a different category: Technology, Sports, and Entertainment.
+2. The categorization process seems to be classifying the main document's content into these predefined categories.
+
+This illustration is commonly used to explain how NLP can be used for classifying text into various topics, which is a fundamental task in many applications like news aggregation, content sorting, and understanding document themes.
+endif::[]
+
+
+ifdef::artifact-type[]
+
+---
+**Tokenization**
+
+- Tokenization techniques break text into tokens, such as words, phrases, or sentences, using various methods like whitespace, punctuation, or specialized tokenizers.
+- Text preprocessing steps often accompany tokenization, including removing stopwords (commonly occurring words) and applying stemming or lemmatization to normalize word forms and improve analysis accuracy.
+
+**Part-of-Speech Tagging**
+
+- Part-of-speech tagging algorithms assign grammatical tags to words in a sentence, indicating their syntactic roles, such as nouns, verbs, adjectives, and adverbs.
+- POS tagging aids in sentence structure analysis, syntactic pattern extraction, and enhances the performance of downstream NLP tasks like named entity recognition and sentiment analysis.
+
+**Named Entity Recognition**
+
+- Named entity recognition models identify and classify named entities in text, including persons, organizations, locations, dates, and numerical expressions.
+- NER techniques play crucial roles in information extraction, entity linking, and constructing knowledge graphs for applications such as search engines and question answering systems.
+
+**Sentiment Analysis**
+
+- Sentiment analysis techniques determine the sentiment polarity of text, categorizing it as positive, negative, or neutral based on expressed opinions or emotions.
+- Applications of sentiment analysis include social media monitoring, customer feedback analysis, and brand reputation management to gauge public sentiment and inform business decisions.
+
+**Applications of Natural Language Processing**
+
+NLP finds diverse applications across domains:
+
+**Text Mining and Information Retrieval**
+
+- NLP techniques facilitate text mining tasks like document clustering, topic modeling, and extracting valuable information from unstructured text data, enhancing knowledge discovery and decision-making processes.
+
+**Question Answering and Chatbots**
+
+- NLP powers question answering systems and chatbots capable of understanding and responding to user queries in natural language, improving user experience and providing valuable assistance in various domains.
+
+**Machine Translation and Language Generation**
+
+- NLP enables machine translation systems to translate text between different languages accurately and efficiently.
+- Additionally, NLP techniques support language generation tasks such as text summarization and paraphrasing, aiding content creation and communication across language barriers.
+
+endif::artifact-type[]
+
+
+<<<
+
+==== Conclusion
+
+In conclusion, natural language processing is a fundamental area of AI that enables computers to understand and analyze human language data. 
+
+By mastering the basics of NLP and applying its techniques to real-world problems, analysts can unlock valuable insights from text data and develop intelligent language-based applications.
+
+[NOTE]
+**Hands-On Exercise:**
+For hands-on experience, review and complete _Exercise 5A_ in the exercise guide for this course.
+
+ifdef::artifact-type[]
+
+---
+
+===== Additional Resources
+
+- NLTK Documentation: https://www.nltk.org/
+- spaCy Documentation: https://spacy.io/
+- "Natural Language Processing in Python" by Jacob Perkins
+- Coursera: Natural Language Processing Specialization: https://www.coursera.org/specializations/natural-language-processing
+
+endif::artifact-type[]
+
+ifeval::["{artifact-type}" == "IG"]
+
+---
+
+*Instructor note:* After allowing time for the hands-on exercise, transition to the next lesson in the module.
+endif::[]
+
+<<<
+
+=== Lesson {module-number}.2: Text Processing with TextBlob
+
+[grid=none,frame=none,cols="25%a,75%a"]
+|===
+|image::bullseye.svg[align="left",pdfwidth=50%]|TextBlob is a Python library built on top of NLTK and other libraries, providing a simple API for common natural language processing (NLP) tasks. It offers tools for tokenization, part-of-speech tagging, noun phrase extraction, sentiment analysis, and more. 
+
+In this lesson, we'll explore how to use TextBlob for text processing tasks.
+|
+|===
+
+
+ifdef::artifact-type[]
+
+---
+* TextBlob serves as a user-friendly interface for performing various natural language processing (NLP) tasks, leveraging the capabilities of NLTK and other libraries under the hood.
+* Its intuitive API simplifies common NLP tasks such as tokenization, part-of-speech tagging, noun phrase extraction, sentiment analysis, and more, making it accessible to users of all levels of expertise.
+* TextBlob's sentiment analysis feature allows users to assess the sentiment polarity of text, indicating whether the sentiment expressed is positive, negative, or neutral, which is valuable for sentiment analysis tasks in text data.
+* In addition to its core functionality, TextBlob supports extensions and customizations through the use of plugins, enabling users to extend its capabilities for specific use cases or domains.
+
+endif::artifact-type[]
+
+<<<
+
+==== Introduction to TextBlob
+[grid=none,frame=none,cols="50%a,50%a"]
+|===
+|
+* TextBlob is designed to simplify the process of performing NLP tasks in Python by providing a high-level API and easy-to-use interface. 
+* It integrates with NLTK and Pattern libraries under the hood, making it powerful and versatile for a wide range of text processing tasks. 
+* TextBlob is commonly used for sentiment analysis, text classification, and information extraction tasks.
+|
+image::Introduction to TextBlob.png[]
+|===
+
+ifeval::["{artifact-type}" == "IG"]
+---
+*Instructor note:* The image is a creative representation of the Zen of Python, a collection of guiding principles for writing computer programs in the Python language. This text is often used to illustrate Python's design philosophy, emphasizing readability, simplicity, and explicitness. The words are arranged to form the Python logo, symbolizing the language itself. The Zen of Python is well-known within the programming community for encapsulating Python's philosophy in a humorous and insightful way.
+endif::[]
+
+
+ifdef::artifact-type[]
+
+---
+* TextBlob offers a user-friendly interface and high-level API, streamlining the implementation of various NLP tasks in Python.
+* Leveraging the NLTK and Pattern libraries under the hood, TextBlob harnesses a rich set of linguistic resources and functionalities, enhancing its capabilities for text analysis.
+* Beyond sentiment analysis, text classification, and information extraction, TextBlob supports a plethora of NLP tasks, including part-of-speech tagging, noun phrase extraction, and language translation.
+* It provides seamless integration with Python data structures, allowing for easy manipulation and analysis of textual data stored in formats such as strings or Pandas DataFrames.
+* TextBlob's intuitive design and comprehensive documentation make it an accessible choice for both beginners and experienced practitioners seeking to leverage NLP techniques in their projects.
+
+endif::artifact-type[]
+
+<<<
+
+==== Key Features of TextBlob
+[grid=none,frame=none,cols="50%a,50%a"]
+|===
+|
+- **TextBlob Object**: TextBlob represents a text document and provides methods and properties for processing and analyzing text data.
+- **Tokenization**: TextBlob offers tokenization functions for splitting text into words, sentences, or paragraphs.
+- **Part-of-Speech Tagging**: TextBlob can perform part-of-speech tagging to identify and label the grammatical parts of speech (e.g., nouns, verbs, adjectives) in a text.
+- **Sentiment Analysis**: TextBlob provides sentiment analysis capabilities for determining the sentiment polarity (positive, negative, neutral) of a text document.
+- **Noun Phrase Extraction**: TextBlob can extract noun phrases from text, identifying meaningful noun phrases or entities within sentences.
+|
+image::Key Features of TextBlob.png[]
+|===
+
+ifeval::["{artifact-type}" == "IG"]
+---
+*Instructor note:* The image outlines the fundamental process of a machine learning workflow, split into two main phases: training and prediction. 
+
+endif::[]
+
+
+ifdef::artifact-type[]
+
+---
+* **TextBlob Object**: TextBlob encompasses a text document and offers a comprehensive set of methods and properties for processing and analyzing text data efficiently.
+* **Tokenization**: In addition to its versatile functionality, TextBlob facilitates tokenization, enabling the segmentation of text into individual words, sentences, or paragraphs for further analysis.
+* **Part-of-Speech Tagging**: TextBlob's part-of-speech tagging capability enhances linguistic analysis by identifying and labeling the grammatical parts of speech, such as nouns, verbs, adjectives, and adverbs, within a given text.
+* **Sentiment Analysis**: TextBlob excels in sentiment analysis, allowing users to evaluate the sentiment polarity (positive, negative, or neutral) of a text document, aiding in sentiment classification tasks.
+* **Noun Phrase Extraction**: TextBlob's feature set extends to noun phrase extraction, enabling the identification and extraction of meaningful noun phrases or entities within sentences, contributing to entity recognition and extraction tasks.
+
+endif::artifact-type[]
+
+<<<
+
+
+==== Using TextBlob for Text Processing
+[grid=none,frame=none,cols="50%a,50%a"]
+|===
+|
+**Installing TextBlob**
+
+**Creating TextBlob Objects**
+
+**Tokenization**
+
+**Part-of-Speech Tagging**
+
+**Sentiment Analysis**
+
+**Noun Phrase Extraction**
+
+|
+image::Using TextBlob for Text Processing.png[]
+|===
+
+ifeval::["{artifact-type}" == "IG"]
+---
+*Instructor note:* The image is a visual representation of sentiment analysis on a dataset, presumably of abstracts, using TextBlob – a library for processing textual data. We see two line plots: one for polarity and another for subjectivity, each plotted against the abstracts' index. Polarity measures how positive or negative the sentiment is, while subjectivity quantifies how much of an opinion versus factual information is present. The plot also shows horizontal dashed lines representing average values for polarity and subjectivity across all abstracts. This kind of analysis is helpful in understanding the general sentiment and subjectiveness in a collection of texts.
+endif::[]
+
+ifdef::artifact-type[]
+
+---
+* TextBlob provides a simple and intuitive interface for performing various text processing tasks in Python.
+* Apart from English, TextBlob supports multiple languages, including French, German, Chinese, and more, making it versatile for multilingual text analysis.
+* In addition to its built-in capabilities, TextBlob allows users to implement custom analyzers and extensions to tailor text processing functionality to specific needs.
+* TextBlob's sentiment analysis functionality provides not only polarity scores but also subjectivity scores, offering a more nuanced understanding of text sentiment.
+* Besides basic tokenization, TextBlob supports advanced tokenization techniques such as noun phrase chunking, allowing for more granular analysis of text structure.
+* Users can leverage TextBlob's spelling correction feature to automatically correct common spelling mistakes in text documents.
+
+
+endif::artifact-type[]
+
+
+<<<
+
+==== Conclusion
+
+In conclusion, TextBlob is a versatile library for text processing and analysis in Python, offering simple and intuitive tools for common NLP tasks. 
+
+By mastering the basics of TextBlob and applying its capabilities to text data, analysts can gain valuable insights and automate text processing workflows effectively.
+
+[NOTE]
+**Hands-On Exercise:**
+For hands-on experience, review and complete _Exercise 5B_ in the exercise guide for this course.
+
+ifdef::artifact-type[]
+
+---
+===== Additional Resources
+
+- TextBlob Documentation: https://textblob.readthedocs.io/en/dev/
+- "Natural Language Processing with Python and spaCy" by Yuli Vasiliev
+- Coursera: Natural Language Processing Specialization: https://www.coursera.org/specializations/natural-language-processing
+
+endif::artifact-type[]
+
+ifeval::["{artifact-type}" == "IG"]
+
+---
+
+*Instructor note:* After allowing time for the hands-on exercise, transition to the next lesson in the module.
+
+endif::[]
+
+<<<
+
+=== Lesson {module-number}.3: Advanced Text Analysis Techniques with NLTK
+
+
+[grid=none,frame=none,cols="25%a,75%a"]
+|===
+|image::bullseye.svg[align="left",pdfwidth=50%]|NLTK (Natural Language Toolkit) is a comprehensive library for natural language processing (NLP) tasks in Python. It provides tools and resources for various text analysis tasks, including tokenization, part-of-speech tagging, parsing, and named entity recognition. 
+
+In this lesson, we'll explore advanced text analysis techniques with NLTK.
+|
+|===
+
+ifeval::["{artifact-type}" == "IG"]
+---
+*Instructor note:* The image is a diagram explaining a Convolutional Neural Network (CNN) for sentence classification. Such diagrams are typically used to illustrate the architecture of neural networks, where text data is transformed through various layers to extract features that can be used for classification tasks. The layers shown include the input sentence matrix, convolutional layers that create feature maps, pooling layers that condense these features, and fully connected layers leading to a softmax output that classifies the text into categories. This showcases a method in Natural Language Processing (NLP) where machine learning models are used to understand and make predictions about text data.
+endif::[]
+
+
+ifdef::artifact-type[]
+
+---
+* NLTK (Natural Language Toolkit) is a comprehensive library renowned for its extensive support for natural language processing (NLP) tasks in Python.
+* Beyond basic text analysis tasks, NLTK offers advanced capabilities for tasks such as sentiment analysis, text classification, and machine translation.
+* NLTK provides access to numerous corpora and lexical resources, facilitating language analysis and modeling across different domains and languages.
+* In addition to its core functionalities, NLTK allows users to develop custom NLP algorithms and pipelines, enabling tailored solutions for specific text analysis requirements.
+* Throughout the lesson, learners will delve into advanced text analysis techniques with NLTK, exploring practical applications and real-world use cases.
+
+endif::artifact-type[]
+
+<<<
+
+==== Introduction to NLTK
+[grid=none,frame=none,cols="50%a,50%a"]
+|===
+|
+* NLTK is widely used for text analysis and processing tasks due to its extensive collection of corpora, lexicons, and tools. 
+* It offers functionalities for both basic and advanced NLP tasks, making it suitable for a wide range of applications, including text classification, sentiment analysis, and information extraction. 
+* NLTK is actively maintained and provides support for various languages and domains.
+|
+image::Introduction to NLTK.png[]
+|===
+
+ifeval::["{artifact-type}" == "IG"]
+---
+*Instructor note:* The image you've uploaded appears to be a visualization of text data, specifically a dependency parse or similar linguistic structure that represents the grammatical relationships between words in a sentence. Such visualizations are often used in the field of computational linguistics and natural language processing (NLP) to analyze the syntax of sentences. The arcs connect words to their dependents, showing the structure of the sentence and how words grammatically relate to one another. This could be part of a demonstration of capabilities within the Natural Language Toolkit (NLTK), a popular library in Python for processing and analyzing human language data.
+endif::[]
+
+ifdef::artifact-type[]
+
+---
+* NLTK (Natural Language Toolkit) stands as a cornerstone in the field of natural language processing (NLP), renowned for its comprehensive suite of resources and tools.
+* Its extensive collection of corpora, lexicons, and tools makes NLTK indispensable for a wide array of text analysis and processing tasks.
+* NLTK caters to both basic and advanced NLP tasks, offering functionalities such as tokenization, stemming, lemmatization, part-of-speech tagging, and named entity recognition (NER).
+* The versatility of NLTK extends to various applications, including but not limited to text classification, sentiment analysis, information extraction, machine translation, and topic modeling.
+* Beyond its robust feature set, NLTK benefits from an active community and continuous maintenance, ensuring ongoing support, updates, and enhancements.
+
+
+endif::artifact-type[]
+
+<<<
+
+==== Key Features of NLTK
+[grid=none,frame=none,cols="50%a,50%a"]
+|===
+|
+- **Tokenization**: NLTK offers flexible tokenization methods for splitting text into words, sentences, or paragraphs.
+- **Part-of-Speech Tagging**: NLTK provides tools for part-of-speech tagging to label words with their grammatical categories (e.g., nouns, verbs, adjectives).
+- **Parsing**: NLTK includes parsers for syntactic analysis and parsing of sentences into syntactic structures, such as parse trees.
+- **Named Entity Recognition**: NLTK supports named entity recognition (NER) for identifying and classifying named entities (e.g., persons, organizations, locations) in text.
+|
+image::Key Features of NLTK.png[]
+|===
+
+ifeval::["{artifact-type}" == "IG"]
+---
+*Instructor note:* This note only appears in the instructor guide.
+endif::[]
+
+ifdef::artifact-type[]
+
+---
+* **Stemming and Lemmatization**: NLTK offers capabilities for stemming and lemmatization to reduce words to their root forms, aiding in text normalization and analysis.
+* **Sentiment Analysis**: NLTK includes tools for sentiment analysis, allowing users to assess the sentiment or polarity of text (e.g., positive, negative, neutral).
+* **Corpora and Lexicons**: NLTK provides access to various corpora and lexicons, including word lists, language resources, and annotated datasets, for use in natural language processing tasks.
+* **Machine Learning Integration**: NLTK seamlessly integrates with machine learning libraries like scikit-learn, enabling the development of NLP models for classification, clustering, and other tasks.
+
+endif::artifact-type[]
+
+
+<<<
+
+==== Advanced Text Analysis Techniques
+[grid=none,frame=none,cols="50%a,50%a"]
+|===
+|
+**Named Entity Recognition (NER)**
+
+- Use NLTK's named entity recognition module to identify and classify named entities in text documents.
+- Extract named entities such as persons, organizations, locations, dates, and numeric entities from text using NLTK's NER classifiers.
+
+**Dependency Parsing**
+
+- Perform dependency parsing to analyze the grammatical structure and dependencies between words in sentences.
+- Use NLTK's dependency parsing tools to parse sentences and extract syntactic relationships between words.
+|
+image::Advanced Text Analysis Techniques.png[]
+|===
+
+ifeval::["{artifact-type}" == "IG"]
+---
+*Instructor note:* This note only appears in the instructor guide.
+endif::[]
+
+ifdef::artifact-type[]
+
+---
+* **Named Entity Recognition (NER):**
+  - NLTK's named entity recognition module facilitates the identification and classification of named entities in text documents.
+  - It enables the extraction of various types of named entities, including persons, organizations, locations, dates, and numeric entities, enhancing information extraction and analysis tasks.
+
+* **Dependency Parsing:**
+  - Dependency parsing allows for the analysis of grammatical structure and dependencies between words in sentences.
+  - NLTK's dependency parsing tools enable the parsing of sentences and the extraction of syntactic relationships between words, providing valuable insights into sentence structure and meaning.
+
+endif::artifact-type[]
+
+<<<
+
+==== Sentiment Analysis with NLTK
+[grid=none,frame=none,cols="50%a,50%a"]
+|===
+|
+**Lexicon-Based Sentiment Analysis**
+
+- Conduct sentiment analysis using lexicon-based approaches, such as the VADER (Valence Aware Dictionary and sEntiment Reasoner) sentiment analysis tool.
+- Analyze the sentiment polarity of text documents and sentences based on predefined sentiment lexicons and rules.
+|
+|===
+
+ifeval::["{artifact-type}" == "IG"]
+---
+*Instructor note:* This note only appears in the instructor guide.
+endif::[]
+
+ifdef::artifact-type[]
+
+---
+* NLTK (Natural Language Toolkit) offers a comprehensive suite of tools and resources for natural language processing tasks, including sentiment analysis.
+* Lexicon-based sentiment analysis involves analyzing the sentiment polarity of text using predefined sentiment lexicons and rules.
+* The VADER (Valence Aware Dictionary and sEntiment Reasoner) sentiment analysis tool is a popular lexicon-based approach included in NLTK, known for its effectiveness in analyzing sentiment in social media text.
+* Lexicon-based sentiment analysis provides a simple and interpretable method for gauging sentiment in text, making it particularly useful for applications such as social media monitoring and customer feedback analysis.
+
+endif::artifact-type[]
+
+<<<
+
+==== Conclusion
+
+In conclusion, NLTK provides a rich set of tools and resources for advanced text analysis and natural language processing tasks. 
+
+By mastering the advanced text analysis techniques offered by NLTK, analysts can gain deeper insights into text data and build more sophisticated NLP applications.
+
+[NOTE]
+**Hands-On Exercise:**
+For hands-on experience, review and complete _Exercise 5C_ in the exercise guide for this course.
+
+ifdef::artifact-type[]
+
+---
+
+===== Additional Resources
+
+- NLTK Documentation: https://www.nltk.org/
+- "Natural Language Processing with Python" by Steven Bird, Ewan Klein, and Edward Loper
+- Coursera: Natural Language Processing Specialization: https://www.coursera.org/specializations/natural-language-processing
+
+
+endif::artifact-type[]
+
+ifeval::["{artifact-type}" == "IG"]
+
+---
+
+*Instructor note:* After allowing time for the hands-on exercise, transition to the next lesson in the module.
+
+endif::[]
+
+<<<
+
+=== Lesson {module-number}.4: Implementing State-of-the-Art NLP Models with BERT
+
+
+[grid=none,frame=none,cols="25%a,75%a"]
+|===
+|image::bullseye.svg[align="left",pdfwidth=50%]|BERT (Bidirectional Encoder Representations from Transformers) is a powerful pre-trained NLP model developed by Google that has achieved state-of-the-art performance on various natural language understanding tasks. It is based on the transformer architecture and is trained on large corpora of text data to learn rich contextual representations of words. 
+
+In this lesson, we'll explore how to implement state-of-the-art NLP models with BERT using the Hugging Face Transformers library.
+|
+|===
+
+ifeval::["{artifact-type}" == "IG"]
+---
+*Instructor note:* This note only appears in the instructor guide.
+endif::[]
+
+
+ifdef::artifact-type[]
+
+---
+* BERT (Bidirectional Encoder Representations from Transformers) is a revolutionary pre-trained NLP model developed by Google, renowned for its exceptional performance on diverse natural language understanding tasks.
+* Leveraging the transformer architecture, BERT learns contextual representations of words by considering both left and right contexts, enabling it to capture nuanced semantic relationships in text data.
+* In addition to achieving state-of-the-art results on tasks such as question answering, sentiment analysis, and text classification, BERT has become a cornerstone in the field of NLP, serving as a foundation for subsequent advancements.
+* The Hugging Face Transformers library provides a user-friendly interface for implementing and fine-tuning BERT models, streamlining the process of leveraging BERT for various NLP tasks.
+* Through hands-on exercises and practical examples, participants will gain proficiency in utilizing BERT and fine-tuning it for specific NLP tasks, empowering them to harness the full potential of state-of-the-art NLP models in their projects.
+
+endif::artifact-type[]
+
+
+<<<
+
+==== Introduction to BERT
+[grid=none,frame=none,cols="50%a,50%a"]
+|===
+|
+* BERT is a pre-trained language model that leverages bidirectional context to capture the meaning of words in a sentence. 
+* It uses a multi-layer transformer architecture to encode text into dense vector representations that can be used as features for downstream NLP tasks, such as text classification, named entity recognition, and question answering. 
+* BERT has been pre-trained on large text corpora, such as Wikipedia and BooksCorpus, using a masked language modeling (MLM) objective and next sentence prediction (NSP) task.
+|
+image::Introduction to BERT.png[]
+|===
+
+
+ifeval::["{artifact-type}" == "IG"]
+---
+*Instructor note:* This note only appears in the instructor guide.
+endif::[]
+
+
+ifdef::artifact-type[]
+
+---
+* BERT, which stands for Bidirectional Encoder Representations from Transformers, revolutionized natural language processing (NLP) by introducing bidirectional context understanding.
+* Its multi-layer transformer architecture enables BERT to capture intricate linguistic nuances and contextual relationships within sentences, leading to more accurate representations of text.
+* BERT's pre-training process involves two tasks: masked language modeling (MLM), where random words are masked and predicted based on their context, and next sentence prediction (NSP), where BERT learns to predict whether two sentences follow each other in a given text.
+* The pre-trained BERT model, available in different sizes (e.g., BERT-base, BERT-large), has been fine-tuned on specific downstream NLP tasks to achieve state-of-the-art performance in areas like sentiment analysis, text summarization, and machine translation.
+
+endif::artifact-type[]
+
+<<<
+
+==== Key Features of BERT
+[grid=none,frame=none,cols="50%a,50%a"]
+|===
+|
+- **Bidirectional Context**: BERT considers both left and right context when encoding words, allowing it to capture rich semantic information.
+- **Transformer Architecture**: BERT is based on the transformer architecture, which enables efficient parallel processing and attention-based mechanisms for capturing long-range dependencies.
+- **Pre-trained Representations**: BERT provides pre-trained representations of words and sentences that can be fine-tuned for specific NLP tasks with minimal task-specific data.
+|
+image::Key Features of BERT.png[]
+|===
+
+
+ifeval::["{artifact-type}" == "IG"]
+---
+*Instructor note:* This note only appears in the instructor guide.
+endif::[]
+
+ifdef::artifact-type[]
+
+---
+* **Multi-layered Representation**: BERT consists of multiple layers of transformers, each capturing different levels of linguistic information, from syntactic structures to semantic meanings.
+* **Masked Language Model Pre-training**: BERT is pre-trained using a masked language model objective, where a percentage of words in input sequences are randomly masked, encouraging the model to predict missing words based on context.
+* **Next Sentence Prediction Pre-training**: In addition to the masked language model objective, BERT is also pre-trained using a next sentence prediction task, where the model learns to predict whether a sentence follows another sentence in a given text.
+
+endif::artifact-type[]
+
+<<<
+
+==== Implementing BERT with Hugging Face Transformers
+
+[grid=none,frame=none,cols="50%a,50%a"]
+|===
+|
+**Installing Hugging Face Transformers**
+
+**Loading Pre-trained BERT Models**
+
+**Fine-tuning BERT for Downstream Tasks**
+|
+image::Implementing State-of-the-Art NLP Models with BERT.png[]
+|===
+
+
+ifeval::["{artifact-type}" == "IG"]
+---
+*Instructor note:* This note only appears in the instructor guide.
+endif::[]
+
+ifdef::artifact-type[]
+
+---
+* **Applying Transfer Learning:** Implementing state-of-the-art NLP models with BERT involves leveraging transfer learning techniques. By fine-tuning pre-trained BERT models on domain-specific tasks, users can achieve better performance with less data and training time.
+* **Model Configuration and Parameters:** Hugging Face Transformers offers flexibility in configuring BERT models by adjusting various parameters such as model architecture, hidden layers, and attention mechanisms. Users can experiment with different configurations to optimize model performance for specific tasks.
+* **Support for Custom Architectures:** In addition to pre-trained BERT variants, Hugging Face Transformers supports custom architectures and extensions, enabling researchers and practitioners to explore novel model designs and enhancements tailored to their requirements.
+
+endif::artifact-type[]
+
+
+<<<
+    
+==== Conclusion
+
+In conclusion, BERT is a state-of-the-art NLP model that provides powerful representations of text data and can be effectively used for various NLP tasks. 
+
+By leveraging the Hugging Face Transformers library, analysts can easily implement and fine-tune pre-trained BERT models for specific tasks and achieve competitive performance on benchmark datasets.
+
+[NOTE]
+**Hands-On Exercise:**
+For hands-on experience, review and complete _Exercise 5D_ in the exercise guide for this course.
+
+ifdef::artifact-type[]
+
+---
+
+===== Additional Resources
+
+- Hugging Face Transformers Documentation: https://huggingface.co/transformers/
+- "BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding" by Jacob Devlin et al.
+- Coursera: Natural andLanguage Processing with Sequence Models: https://www.coursera.org/learn/natural-language-processing-sequence-models
+
+endif::artifact-type[]
+
+ifeval::["{artifact-type}" == "IG"]
+
+---
+
+*Instructor note:* This is the last lesson in the module. After allowing time for the hands-on exercise, transition to the next module in the course.
+endif::[]
+
+<<<

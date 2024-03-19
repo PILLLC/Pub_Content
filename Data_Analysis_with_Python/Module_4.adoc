@@ -1,0 +1,687 @@
+== Module {module-number}: Web Scraping
+:imagesdir: images
+:source-highlighter: rouge
+:icons: font
+
+image::PIL_Logo_2023.png[align="left", pdfwidth=25%]
+
+{SP}
+
+
+[discrete]
+=== Learning Objectives
+
+[grid=none,frame=none,cols="25%a,75%a"]
+|===
+|image::agenda.svg[align="left",pdfwidth=50%]|Upon completion of this module, students should be able to:
+
+* Understand the basics of web scraping and its applications.
+* Learn to use Scrapy for structured web scraping.
+* Master web scraping techniques for dynamic websites using Selenium.
+* Explore HTML parsing and scraping with BeautifulSoup.
+|
+|===
+
+<<<
+    
+=== Lesson {module-number}.1: Basics of Web Scraping and Its Applications
+
+[grid=none,frame=none,cols="25%a,75%a"]
+|===
+|image::bullseye.svg[align="left",pdfwidth=50%]|Web scraping is the process of extracting data from websites programmatically. It allows users to gather data from the internet for various purposes, such as research, analysis, and automation. 
+
+In this lesson, we'll explore the basics of web scraping, including techniques, tools, and applications.
+|
+|===
+
+{SP}
+
+image::Basics of Web Scraping and Its Applications.png[pdfheight=25%, pdfwidth=25%]
+
+ifeval::["{artifact-type}" == "IG"]
+---
+*Instructor note:* The image displays a code snippet of a web scraping script written in Python using the Scrapy library. 
+endif::[]
+
+ifdef::artifact-type[]
+
+---
+* Web scraping involves programmatically extracting data from websites, enabling users to gather information from the internet for diverse purposes, including research, analysis, and automation.
+* Techniques for web scraping encompass parsing HTML/XML documents, interacting with web pages using HTTP requests, and extracting desired data elements.
+* Various tools and libraries facilitate web scraping in Python, including Scrapy, Selenium, and BeautifulSoup, each offering unique features and capabilities for different scraping tasks.
+* Applications of web scraping span numerous domains, including e-commerce, market research, competitive analysis, and content aggregation, providing valuable insights and data for decision-making.
+
+endif::artifact-type[]
+
+
+
+<<<
+
+==== Introduction to Web Scraping
+
+[cols="50%a, 50%a", grid="none", frame="none"]
+|===
+|* Web scraping involves fetching and extracting information from web pages using automated scripts or programs. 
+* It enables users to collect data from multiple sources on the internet quickly and efficiently. 
+* Web scraping techniques vary depending on the structure and complexity of the target website, but common approaches include parsing HTML, using APIs, and leveraging specialized scraping libraries.|image::Introduction to Web Scraping.png[]
+|===
+
+ifeval::["{artifact-type}" == "IG"]
+---
+*Instructor note:* This note only apears in the instructor guide.
+endif::[]
+
+ifdef::artifact-type[]
+
+---
+* Web scraping facilitates the automated extraction of data from web pages, streamlining the process of gathering information from various online sources.
+* It empowers users to access and collect data from websites that may not offer direct access to their underlying data through APIs or other means.
+* Web scraping techniques encompass a range of approaches tailored to different website structures and complexities, including HTML parsing, API utilization, and the utilization of specialized scraping libraries.
+* Legal and ethical considerations are paramount in web scraping, requiring adherence to website terms of service, copyright laws, and data privacy regulations to ensure responsible data acquisition practices.
+
+endif::artifact-type[]
+
+<<<
+
+==== Key Concepts in Web Scraping
+[cols="50%a, 50%a", grid="none", frame="none"]
+|===
+|- **HTML Parsing**: Web scraping often involves parsing HTML documents to extract relevant data elements, such as text, links, and images.
+- **XPath and CSS Selectors**: XPath and CSS selectors are techniques used to navigate and select specific elements within an HTML document for scraping.
+- **Robots.txt and Terms of Service**: Web scraping may be subject to legal and ethical considerations, such as adhering to robots.txt rules and respecting website terms of service to avoid legal issues.|image::Key Concepts in Web Scraping.png[]
+|===
+
+ifeval::["{artifact-type}" == "IG"]
+---
+*Instructor note:* The image depicts the process of web scraping visually. It starts with webpages as the data source, which are then processed through web scraping tools or techniques, resulting in structured data. The structured data is shown to be stored in formats like XML and CSV, which are standard formats for storing and exchanging data. This process is commonly used to extract and transform unstructured web data into a structured form that can be analyzed and utilized for various purposes.
+endif::[]
+
+ifdef::artifact-type[]
+
+---
+* **Web Scraping Frameworks**: Various web scraping frameworks, such as Scrapy and BeautifulSoup, provide tools and utilities to simplify the process of extracting data from websites.
+* **Dynamic Content Handling**: Modern websites often use dynamic content loaded via JavaScript, requiring advanced techniques like headless browsers or AJAX requests for effective scraping.
+* **Rate Limiting and Throttling**: To avoid overloading target servers and being flagged as suspicious activity, web scrapers often implement rate limiting and throttling mechanisms to control the frequency of requests.
+
+endif::artifact-type[]
+
+<<<
+
+==== Web Scraping Techniques
+
+[cols="50%a, 50%a", grid="none", frame="none"]
+|===
+|**Manual Scraping**
+
+**Automated Scraping with BeautifulSoup**
+
+**Scraping Dynamic Websites with Selenium**
+
+**Applications of Web Scraping**
+
+**Market Research and Competitor Analysis**
+
+**Data Aggregation and Integration**
+
+**Price Monitoring and Dynamic Pricing**
+
+|image::Web Scraping Techniques.png[]
+|===
+
+ifdef::artifact-type[]
+
+ifeval::["{artifact-type}" == "IG"]
+---
+*Instructor note:* The image appears to be a graphic representation of Python being used for web scraping. It shows the Python logo connected to a symbol representing web scraping.
+endif::[]
+
+---
+**Limitations of Web Scraping**
+
+- Web scraping may be restricted by website owners through the implementation of measures such as CAPTCHA, IP blocking, and user-agent detection to prevent automated access to their data.
+
+**Scraping Authentication-Protected Websites**
+
+- Some websites require user authentication (e.g., login credentials) to access certain pages or data. Scraping authenticated websites requires additional techniques such as session handling and cookie management to maintain user sessions.
+
+**Ethical and Legal Considerations**
+
+- Web scraping raises ethical and legal concerns related to data privacy, copyright infringement, and terms of service violations.
+
+**Data Cleaning and Preprocessing**
+
+- Raw data obtained through web scraping often requires cleaning and preprocessing to remove noise, handle missing values, and standardize data formats before analysis. Techniques such as data validation, transformation, and outlier detection may be applied.
+
+**Scalability and Performance**
+
+- Scalability and performance are important considerations when web scraping large volumes of data. 
+
+endif::artifact-type[]
+
+<<<
+
+==== Conclusion
+
+In conclusion, web scraping is a powerful technique for extracting data from the internet for various purposes, including market research, data aggregation, and price monitoring. 
+
+By mastering the basics of web scraping and using appropriate tools and techniques, analysts can unlock valuable insights from web-based data sources.
+
+[NOTE]
+**Hands-On Exercise:**
+For hands-on experience, review and complete _Exercise 4A_ in the exercise guide for this course.
+
+ifdef::artifact-type[]
+
+---
+===== Additional Resources
+
+- BeautifulSoup Documentation: https://www.crummy.com/software/BeautifulSoup/bs4/doc/
+- Selenium Documentation: https://www.selenium.dev/documentation/en/
+- "Web Scraping with Python" by Ryan Mitchell
+- Coursera: Web Scraping and Data Extraction in Python: https://www.coursera.org/learn/web-scraping-python
+
+endif::artifact-type[]
+
+ifeval::["{artifact-type}" == "IG"]
+
+---
+
+*Instructor note:* After allowing time for the hands-on exercise, transition to the next lesson in the module.
+endif::[]
+
+
+<<<
+
+=== Lesson {module-number}.2: Structured Web Scraping with Scrapy
+
+[grid=none,frame=none,cols="25%a,75%a"]
+|===
+|image::bullseye.svg[align="left",pdfwidth=50%]|Scrapy is a powerful Python framework for web scraping that provides tools and utilities for crawling websites and extracting structured data. It simplifies the process of building web crawlers and allows users to define custom spiders to scrape specific websites. 
+
+In this lesson, we'll explore how to use Scrapy for structured web scraping tasks.
+|
+|===
+
+{SP}
+
+image::Structured Web Scraping with Scrapy.png[pdfheight25%, pdfwidth=25%]
+
+ifeval::["{artifact-type}" == "IG"]
+---
+*Instructor note:* The image shows a portion of Python code for a web scraping spider using the Scrapy framework. 
+endif::[]
+
+ifdef::artifact-type[]
+
+---
+* Scrapy streamlines the process of building web crawlers by providing a robust framework with built-in tools and utilities.
+* With Scrapy, users can define custom spiders tailored to the structure and content of specific websites, enabling targeted and efficient scraping of desired data.
+* Scrapy facilitates the extraction of structured data from websites, allowing users to parse HTML and XML documents effortlessly.
+* The framework's asynchronous architecture enhances performance and scalability, enabling rapid and efficient scraping of large volumes of data from multiple websites.
+* Scrapy supports features such as request throttling, automatic retries, and user-agent rotation, ensuring reliability and compliance with website scraping guidelines.
+
+endif::artifact-type[]
+
+<<<
+
+==== Introduction to Scrapy
+[cols="50%a, 50%a", grid="none", frame="none"]
+|===
+|* Scrapy is designed for web scraping at scale and offers features such as request scheduling, automatic content extraction, and data export pipelines. 
+* It provides a high-level API for defining spiders, which are classes that define how to crawl and extract data from websites. 
+* Scrapy is widely used for various web scraping applications, including data mining, content aggregation, and search engine indexing.
+|image::Introduction to Scrapy.png[]
+|===
+
+ifeval::["{artifact-type}" == "IG"]
+---
+*Instructor note:* This note only appears in the instructor guide.
+endif::[]
+
+ifdef::artifact-type[]
+
+---
+* Scrapy is equipped for web scraping at scale, offering advanced features like request scheduling, automatic content extraction, and data export pipelines, facilitating efficient data extraction from websites.
+* Its high-level API simplifies the process of defining spiders, which are classes responsible for specifying how to crawl websites and extract desired data.
+* Widely adopted across diverse industries, Scrapy finds applications in data mining, content aggregation, and search engine indexing, showcasing its versatility and utility in web scraping tasks.
+
+endif::artifact-type[]
+
+<<<
+
+==== Key Features of Scrapy
+[cols="50%a, 50%a", grid="none", frame="none"]
+|===
+|- **Spider Middleware**
+- **Item Pipeline**
+- **Request Scheduling**
+- **Robust Architecture**
+|image::Key Features of Scrapy.png[]
+|===
+
+ifeval::["{artifact-type}" == "IG"]
+---
+*Instructor note:* This note only appears in the instructor guide.
+endif::[]
+
+ifdef::artifact-type[]
+
+---
+* **Extensible Architecture**: Scrapy offers an extensible architecture, allowing users to customize and extend its functionality through middleware, extensions, and plugins.
+* **Built-in Crawling Rules**: Scrapy includes built-in crawling rules, such as link extraction and URL filtering, simplifying the process of navigating and scraping websites.
+* **Robust Error Handling**: Scrapy incorporates robust error handling mechanisms, including retries, timeouts, and error logging, to ensure resilience and reliability during the scraping process.
+* **Scalability**: Scrapy is highly scalable, capable of handling large-scale web scraping projects with thousands of concurrent requests and millions of scraped items.
+* **Built-in Support for Proxies and User Agents**: Scrapy provides built-in support for rotating proxies and user agents, enabling users to bypass IP bans and anti-scraping measures effectively.
+
+endif::artifact-type[]
+
+<<<
+
+==== Building Web Crawlers with Scrapy
+
+[cols="50%a, 50%a", grid="none", frame="none"]
+|===
+|
+**Defining Spiders**
+
+**Extracting Data**
+
+**Advanced Techniques with Scrapy**
+
+**Handling Pagination**
+
+**Authentication and Session Management**
+
+|image::Building Web Crawlers with Scrapy.png[]
+|===
+
+ifeval::["{artifact-type}" == "IG"]
+---
+*Instructor note:* The image provides an overview of the workflow associated with web crawling and search engine operations. The process starts with a web crawler scanning web pages. The content of these pages is then analyzed and stored in an index. When a user submits a query, ranking algorithms determine the relevance of indexed pages to the query.
+endif::[]
+
+ifdef::artifact-type[]
+
+---
+* **Defining Spiders:**
+- Scrapy enables the creation of custom spiders by subclassing the `scrapy.Spider` class, providing a flexible framework for defining web crawling logic.
+
+* **Extracting Data:**
+- Scrapy provides powerful selectors to extract data from HTML responses, empowering users to identify and capture desired content based on predefined patterns and rules within spider callbacks.
+
+* **Advanced Techniques with Scrapy:**
+- **Handling Pagination:**
+- Users can implement pagination handling logic within Scrapy spiders to navigate through multiple pages of search results or listings, enabling iterative extraction of data from across the web.
+
+- **Authentication and Session Management:**
+- Scrapy offers middleware functionality to manage authentication and session management tasks, crucial for interacting with websites that require user login or utilize cookies and session tokens.
+
+endif::artifact-type[]
+
+<<<
+
+==== Conclusion
+
+In conclusion, Scrapy is a versatile framework for structured web scraping in Python, offering powerful features for building web crawlers and extracting data from websites. 
+
+By mastering the basics of Scrapy and applying advanced techniques, analysts can automate data collection tasks and extract valuable insights from web-based sources.
+
+[NOTE]
+**Hands-On Exercise:**
+For hands-on experience, review and complete _Exercise 4B_ in the exercise guide for this course.
+
+ifdef::artifact-type[]
+
+---
+
+===== Additional Resources
+
+- Scrapy Documentation: https://docs.scrapy.org/en/latest/
+- "Web Scraping with Python" by Ryan Mitchell
+- Coursera: Web Scraping and Data Extraction in Python: https://www.coursera.org/learn/web-scraping-python
+
+endif::artifact-type[]
+
+ifeval::["{artifact-type}" == "IG"]
+
+---
+
+*Instructor note:* After allowing time for the hands-on exercise, transition to the next lesson in the module.
+endif::[]
+
+
+<<<
+
+=== Lesson {module-number}.3: Dynamic Web Scraping with Selenium
+
+[grid=none,frame=none,cols="25%a,75%a"]
+|===
+|image::bullseye.svg[align="left",pdfwidth=50%]|Selenium is a powerful automation tool for web browsers that allows users to simulate user interactions with web pages, such as clicking buttons, filling out forms, and navigating through dynamic content.
+
+In this lesson, we'll explore how to use Selenium for dynamic web scraping tasks.
+|
+|===
+
+{SP}
+
+image::Dynamic Web Scraping with Selenium.png[pdfheight=25%, pdfwidth=25%]
+
+ifeval::["{artifact-type}" == "IG"]
+---
+*Instructor note:* The image contains a code snippet written in Python for web scraping using the Beautiful Soup library. This snippet is a basic example of how to extract information from a static webpage. 
+
+endif::[]
+
+ifdef::artifact-type[]
+
+---
+* Selenium is widely recognized as a potent automation tool for web browsers, offering capabilities to mimic user interactions with web pages.
+* It enables users to perform a range of actions, including clicking buttons, filling out forms, and navigating through dynamic content, making it versatile for various web scraping scenarios.
+* Selenium's strength lies in its ability to handle websites with JavaScript-based rendering and complex user interfaces, allowing users to scrape data from dynamic web pages effectively.
+* Through practical exercises and demonstrations, learners will gain proficiency in leveraging Selenium for dynamic web scraping tasks, empowering them to extract data from websites with interactive and dynamic elements.
+
+endif::artifact-type[]
+
+<<<
+
+==== Introduction to Selenium
+[grid=none,frame=none,cols="50%a,50%a"]
+|===
+|
+* Selenium provides a WebDriver API that allows users to interact with web browsers programmatically. 
+* It supports multiple browser vendors, including Chrome, Firefox, and Safari, and can be integrated with popular programming languages such as Python, Java, and JavaScript. 
+* Selenium is commonly used for web testing, browser automation, and web scraping tasks that require interaction with JavaScript-based content.
+|image::Introduction to Selenium.png[]
+|===
+
+ifeval::["{artifact-type}" == "IG"]
+---
+*Instructor note:* Selenium is a suite of tools for automating web browsers, and it is often used with Python for web scraping, especially for dynamic websites that require interaction with JavaScript. The graphic likely represents the integration of Selenium for browser automation with Python's capabilities for scripting and data manipulation, which is a powerful combination for tasks like automated testing of web applications and dynamic web scraping.
+endif::[]
+
+ifdef::artifact-type[]
+
+---
+* Selenium's WebDriver API enables users to automate interactions with web browsers, including navigating web pages, clicking elements, filling forms, and more, making it a versatile tool for web automation tasks.
+* In addition to web testing and browser automation, Selenium is widely utilized for web scraping tasks that involve extracting data from dynamic or JavaScript-based web pages, thanks to its ability to simulate user interactions with the page.
+* Selenium's robust support for multiple browser vendors ensures compatibility across various platforms and environments, allowing users to perform automated testing and scraping tasks across different browsers with ease.
+* Selenium's integration with popular programming languages such as Python, Java, and JavaScript provides developers with flexibility and familiarity, enabling them to leverage their existing skills and frameworks for web automation and testing projects.
+
+endif::artifact-type[]
+
+
+<<<
+
+==== Key Features of Selenium
+[grid=none,frame=none,cols="50%a,50%a"]
+|===
+|
+- **Browser Automation**: Selenium allows users to automate web browser actions, such as opening pages, clicking links, filling forms, and submitting data.
+- **Dynamic Content Handling**: Selenium can interact with dynamic web content generated by JavaScript frameworks, AJAX calls, and single-page applications (SPAs).
+- **Cross-Browser Compatibility**: Selenium supports multiple web browsers and platforms, enabling users to run tests and scrape data across different environments.
+- **Headless Mode**: Selenium can run browsers in headless mode, without a graphical user interface, for faster execution and resource efficiency.
+|
+image::Key Features of Selenium.png[]
+|===
+
+ifdef::artifact-type[]
+
+
+ifeval::["{artifact-type}" == "IG"]
+---
+*Instructor note:* The image illustrates various types of testing that can be performed using Selenium, a popular tool for automating web browsers. Surrounding the Selenium logo are different testing categories such as Core Functional Testing, GUI Testing, Database Testing, Usability Testing, Regression Testing, Sanity Testing, Cross Browser Testing, End-to-End (E2E) Testing, and Business Process Testing.
+endif::[]
+
+---
+* **Robust Testing Framework Integration**: Selenium integrates seamlessly with popular testing frameworks like JUnit and TestNG, facilitating automated testing workflows.
+* **Element Locators**: Selenium offers various strategies for locating elements on web pages, including ID, name, XPath, CSS selectors, and more, enhancing flexibility and accuracy in web scraping and automation tasks.
+* **Support for Multiple Programming Languages**: Selenium supports multiple programming languages such as Python, Java, C#, and Ruby, allowing users to choose their preferred language for writing automation scripts.
+* **Parallel Testing**: Selenium Grid enables parallel execution of tests across multiple browsers and platforms, reducing testing time and increasing efficiency.
+* **Extensive Community and Documentation**: Selenium boasts a vibrant community and comprehensive documentation, providing ample resources, tutorials, and support for users at all skill levels.
+
+endif::artifact-type[]
+
+
+<<<
+
+==== Using Selenium for Dynamic Web Scraping
+[grid=none,frame=none,cols="50%a,50%a"]
+|===
+|
+**Setting Up Selenium WebDriver**
+
+**Interacting with Web Elements**
+
+**Extracting Data from Dynamic Content**
+
+**Advanced Techniques with Selenium**
+
+**Handling Frames and Windows**
+
+**Managing Cookies and Sessions**
+|
+image::Using Selenium for Dynamic Web Scraping.png[]
+|===
+
+ifeval::["{artifact-type}" == "IG"]
+---
+*Instructor note:* The image illustrates how Selenium interacts with different web browsers through language bindings and drivers. Selenium provides language bindings for Java, Ruby, C#, Python, and JavaScript, which communicate with browser-specific drivers via the JSON Wire Protocol. These drivers then interact with real browsers like Firefox, Chrome, Safari, Opera, and Edge. The process allows for automated control over browsers for tasks such as testing, automation, and dynamic web scraping. This architecture enables Selenium to automate web browsers in the language of the user's choice.
+endif::[]
+
+ifdef::artifact-type[]
+
+---
+* Selenium WebDriver facilitates dynamic web scraping by allowing users to interact with web elements on pages, such as clicking buttons, filling forms, and scrolling through content.
+* It provides methods to locate HTML elements based on attributes like ID, class name, XPath, or CSS selector, enabling precise targeting for data extraction.
+* Selenium supports explicit and implicit waits to handle asynchronous loading of dynamic content, ensuring accurate data extraction by waiting for elements to become available.
+* Advanced techniques with Selenium include handling frames and iframes within web pages, allowing users to navigate and interact with nested browsing contexts seamlessly.
+* Selenium also offers capabilities for managing browser cookies and sessions, enabling the preservation of authentication states and user sessions across multiple scraping requests.
+
+endif::artifact-type[]
+
+
+<<<
+
+==== Conclusion
+
+In conclusion, Selenium is a valuable tool for dynamic web scraping tasks that involve interacting with JavaScript-based content and complex user interfaces. 
+
+By mastering the basics of Selenium and applying advanced techniques, analysts can automate data collection from dynamic web sources and extract valuable insights efficiently.
+
+[NOTE]
+**Hands-On Exercise:**
+For hands-on experience, review and complete _Exercise 4C_ in the exercise guide for this course.
+
+
+ifdef::artifact-type[]
+
+---
+===== Additional Resources
+
+- Selenium Documentation: https://www.selenium.dev/documentation/en/
+- "Selenium WebDriver Recipes in Python" by Gaurav Singh
+- Coursera: Automated Software Testing with Selenium: https://www.coursera.org/learn/automated-software-testing
+
+endif::artifact-type[]
+
+ifeval::["{artifact-type}" == "IG"]
+
+---
+
+*Instructor note:* After allowing time for the hands-on exercise, transition to the next lesson in the module.
+endif::[]
+
+
+<<<
+
+=== Lesson {module-number}.4: HTML Parsing and Scraping with BeautifulSoup
+
+[grid=none,frame=none,cols="25%a,75%a"]
+|===
+|image::bullseye.svg[align="left",pdfwidth=50%]|BeautifulSoup is a Python library for parsing HTML and XML documents and extracting data from them. It provides a simple and intuitive interface for navigating the parse tree and searching for specific elements or attributes within HTML documents. 
+
+In this lesson, we'll explore how to use BeautifulSoup for HTML parsing and web scraping tasks.
+|
+|===
+
+{SP}
+
+image::HTML Parsing and Scraping with BeautifulSoup.png[pdfheigth=30%, pdfwidth=30%]
+
+ifeval::["{artifact-type}" == "IG"]
+---
+*Instructor note:* The image contains a Python code snippet for a web scraping spider class named `MySpider`, using the Scrapy framework in conjunction with Selenium and BeautifulSoup.
+endif::[]
+
+
+ifdef::artifact-type[]
+
+---
+* BeautifulSoup is renowned for its simplicity and ease of use, making it an ideal choice for parsing HTML and XML documents, even for users with minimal programming experience.
+* The library's intuitive interface facilitates navigation through the parse tree, enabling users to locate and extract desired elements or attributes from HTML documents effortlessly.
+* In addition to parsing HTML, BeautifulSoup supports various parsing strategies, including lxml, html5lib, and built-in parsers, providing flexibility to accommodate different parsing requirements and preferences.
+* Beyond simple parsing tasks, BeautifulSoup excels in web scraping applications, enabling users to extract structured data from web pages efficiently and effectively.
+
+endif::artifact-type[]
+
+
+<<<
+
+==== Introduction to BeautifulSoup
+[grid=none,frame=none,cols="50%a,50%a"]
+|===
+|
+* BeautifulSoup is a popular library for web scraping and data extraction in Python. 
+* It is designed to handle poorly formatted HTML and XML documents and provides robust tools for navigating the document tree, searching for elements, and extracting data. 
+* BeautifulSoup can be integrated with other libraries such as Requests for fetching web pages and Pandas for data manipulation and analysis.
+|
+image::Introduction to BeautifulSoup.png[]
+|===
+
+ifeval::["{artifact-type}" == "IG"]
+---
+*Instructor note:* The image combines the logo of Python with the name "BeautifulSoup," which is a Python library for parsing HTML and XML documents. BeautifulSoup is widely used in web scraping to extract data from web pages, allowing users to navigate the parse tree and find or modify data easily. This image might be used as a visual aid to represent the BeautifulSoup library in educational materials or presentations.
+endif::[]
+
+
+ifdef::artifact-type[]
+
+---
+* BeautifulSoup stands as a widely used and trusted library within the Python ecosystem for web scraping and data extraction tasks.
+* It excels in parsing and handling poorly formatted HTML and XML documents, offering robust tools for traversing the document tree, locating specific elements, and extracting desired data.
+* Beyond its parsing capabilities, BeautifulSoup supports seamless integration with other Python libraries such as Requests, facilitating web page retrieval, and Pandas, enabling efficient data manipulation and analysis workflows.
+* The library's user-friendly interface and extensive documentation make it accessible to users of all skill levels, from beginners to seasoned developers, fostering a vibrant community and ecosystem around web scraping and data extraction.
+
+endif::artifact-type[]
+
+
+<<<
+
+==== Key Features of BeautifulSoup
+[grid=none,frame=none,cols="50%a,50%a"]
+|===
+|- **HTML Parsing**: BeautifulSoup parses HTML documents and constructs a parse tree that represents the document structure.
+- **Element Navigation**: BeautifulSoup provides methods for navigating the parse tree and accessing elements and attributes within HTML documents.
+- **Data Extraction**: BeautifulSoup allows users to extract data from HTML documents using various search methods, including tag names, CSS selectors, and regular expressions.
+- **HTML Cleaning**: BeautifulSoup can be used to clean and sanitize HTML documents by removing unnecessary tags, attributes, and formatting.
+|
+image::Key Features of BeautifulSoup.png[]
+|===
+
+ifeval::["{artifact-type}" == "IG"]
+---
+*Instructor note:* The image features the Python logo surrounded by question marks, suggesting it may be related to problem-solving, inquiry, or learning about Python. This type of imagery is often used in educational materials to symbolize the exploration of Python's features, troubleshooting, or commonly asked questions within the programming community.
+endif::[]
+ifdef::artifact-type[]
+
+---
+* **Data Manipulation**: In addition to parsing and navigating HTML documents, BeautifulSoup offers functionality for manipulating HTML elements, allowing users to add, remove, and modify elements as needed.
+* **Encoding Handling**: BeautifulSoup automatically detects and handles different character encodings in HTML documents, ensuring accurate parsing and extraction of data.
+* **Robustness and Flexibility**: BeautifulSoup is robust and flexible, capable of handling malformed HTML documents and adapting to changes in document structure gracefully.
+* **Integration with Other Libraries**: BeautifulSoup seamlessly integrates with other Python libraries, such as requests for web scraping and pandas for data analysis, enhancing its utility in various data processing workflows.
+
+endif::artifact-type[]
+
+
+<<<
+
+==== Using BeautifulSoup for HTML Parsing
+[grid=none,frame=none,cols="50%a,50%a"]
+|===
+|
+**Parsing HTML Documents**
+
+
+**Navigating the Parse Tree**
+
+**Extracting Data with BeautifulSoup**
+
+**Searching for Elements**
+
+**Extracting Tables and Forms**
+|
+|===
+
+ifeval::["{artifact-type}" == "IG"]
+---
+*Instructor note:* This note only apears in the instructor guide.
+endif::[]
+
+ifdef::artifact-type[]
+
+---
+*Parsing HTML Documents*
+
+-BeautifulSoup provides functionality to parse HTML documents from strings, files, or URLs using its `BeautifulSoup` constructor, offering flexibility in data extraction.
+
+-Users can specify the parser type (e.g., 'html.parser', 'lxml', 'html5lib') when creating a BeautifulSoup object to ensure compatibility with different HTML document structures and formats.
+
+*Navigating the Parse Tree*
+
+-Beyond basic navigation, BeautifulSoup offers advanced methods for traversing the parse tree, including `descendants()`, `next_sibling()`, `previous_sibling()`, and `parents()`, facilitating precise element selection.
+-Advanced CSS selector support allows for efficient querying and selection of elements based on complex criteria, enhancing flexibility in data extraction tasks.
+
+*Searching for Elements*
+
+* In addition to searching for single elements, BeautifulSoup's `find_all()` method supports advanced filtering and extraction based on regular expressions, providing fine-grained control over data extraction.
+
+*Extracting Tables and Forms*
+
+* BeautifulSoup's `find()` and `find_all()` methods support searching for specific elements within tables and forms, simplifying data extraction tasks from structured HTML documents.
+
+
+endif::artifact-type[]
+
+<<<
+
+==== Conclusion
+
+In conclusion, BeautifulSoup is a versatile library for HTML parsing and web scraping in Python. 
+
+By mastering the basics of BeautifulSoup and applying its tools and techniques, analysts can extract valuable data from HTML documents and automate data collection tasks effectively.
+
+[NOTE]
+**Hands-On Exercise:**
+For hands-on experience, review and complete _Exercise 4D_ in the exercise guide for this course.
+
+
+ifdef::artifact-type[]
+
+---
+
+===== Additional Resources
+
+- BeautifulSoup Documentation: https://www.crummy.com/software/BeautifulSoup/bs4/doc/
+- "Web Scraping with Python" by Ryan Mitchell
+- Coursera: Web Scraping and Data Extraction in Python: https://www.coursera.org/learn/web-scraping-python
+
+endif::artifact-type[]
+
+ifeval::["{artifact-type}" == "IG"]
+
+---
+
+*Instructor note:* After allowing time for the hands-on exercise, transition to the next lesson in the module.
+endif::[]
+
+<<<

@@ -1,0 +1,686 @@
+== Module {module-number}: Time Series Analysis
+:imagesdir: images
+:source-highlighter: rouge
+:icons: font
+
+image::PIL_Logo_2023.png[align="left", pdfwidth=25%]
+
+{SP}
+
+
+[discrete]
+=== Learning Objectives
+
+[grid=none,frame=none,cols="25%a,75%a"]
+|===
+|image::agenda.svg[align="left",pdfwidth=50%]|Upon completion of this module, students should be able to:
+
+* Understand the characteristics of time series data.
+* Learn to use Darts for time series forecasting and modeling.
+* Explore time series analysis techniques using Kats.
+* Learn to extract features from time series data using Tsfresh.
+|
+|===
+
+
+<<<
+    
+=== Lesson {module-number}.1: Characteristics of Time Series Data
+
+
+[grid=none,frame=none,cols="25%a,75%a"]
+|===
+|image::bullseye.svg[align="left",pdfwidth=50%]|Time series data consists of observations collected or recorded sequentially over time. It is commonly encountered in various fields such as finance, economics, weather forecasting, and signal processing. Understanding the characteristics of time series data is essential for analyzing and modeling temporal patterns and trends effectively. 
+
+In this lesson, we'll explore the key characteristics of time series data.
+|
+|===
+
+{SP}
+
+image::Characteristics of Time Series Dataiii.png[pdfwidth=40%,pdfheight=40%]
+
+ifeval::["{artifact-type}" == "IG"]
+---
+*Instructor note:* This note only appears in the instructor guide.
+endif::[]
+
+
+ifdef::artifact-type[]
+
+---
+* Time series data is inherently sequential, with observations recorded at regular or irregular intervals over time, making it distinct from cross-sectional or panel data.
+* The temporal aspect of time series data introduces dependencies between observations, where each data point's value is influenced by its predecessors, reflecting the evolving nature of phenomena over time.
+* Time series data often exhibits seasonality, periodic fluctuations, trends, and irregularities, necessitating specialized analysis techniques such as decomposition, smoothing, and forecasting to extract meaningful insights.
+* Common patterns observed in time series data include trend, which represents long-term changes or movements in the data, and seasonality, which denotes repetitive patterns that occur at fixed intervals.
+* Understanding the characteristics of time series data is crucial for selecting appropriate modeling approaches, determining the stationarity of the data, and identifying potential challenges and limitations in analysis and forecasting tasks.
+
+endif::artifact-type[]
+
+
+<<<
+
+==== Introduction to Time Series Data
+[grid=none,frame=none,cols="50%a,50%a"]
+|===
+|
+Time series data is characterized by the following key features:
+
+- **Temporal Order**
+- **Sequential Dependence**
+- **Seasonality**
+- **Trend**
+- **Random Variation**
+|
+image::Introduction to Time Series Data.png[]
+|===
+
+ifeval::["{artifact-type}" == "IG"]
+---
+*Instructor note:* This note only appears in the instructor guide.
+endif::[]
+
+
+ifdef::artifact-type[]
+
+---
+* **Periodicity**: Time series data can have periodicity, where patterns or behaviors repeat at regular intervals.
+* **Stationarity**: Stationary time series data has statistical properties, such as mean and variance, that remain constant over time.
+* **Autocorrelation**: Time series data often exhibits autocorrelation, where the value of a data point is correlated with its past values at different time lags.
+* **Irregular Events**: Time series data may contain irregular events or anomalies, such as sudden spikes or drops, that deviate from the regular pattern.
+* **Seasonal Decomposition**: Analyzing time series data often involves decomposing it into its constituent components, such as trend, seasonality, and residual, to better understand underlying patterns and trends.
+
+endif::artifact-type[]
+
+
+<<<
+
+==== Components of Time Series Data
+[grid=none,frame=none,cols="50%a,50%a"]
+|===
+|
+Time series data can be decomposed into several components, including:
+
+- **Trend Component**
+- **Seasonal Component**
+- **Cyclical Component**
+- **Irregular Component**
+|
+image::Components of Time Series Data.png[]
+|===
+
+
+ifeval::["{artifact-type}" == "IG"]
+---
+*Instructor note:* This note only appears in the instructor guide.
+endif::[]
+
+ifdef::artifact-type[]
+
+---
+* **Autocorrelation Component**: This component represents the correlation between observations at different time points. It indicates whether there is a relationship between a data point and previous data points in the series.
+* **Residual Component**: The residual component represents the difference between the observed values and the values predicted by a time series model. It reflects the variability in the data that is not accounted for by the model's components.
+* **Exogenous Component**: This component represents external factors or variables that influence the time series but are not part of the inherent trend, seasonal, or cyclical patterns. These external factors can include economic indicators, weather conditions, or policy changes.
+* **Structural Break Component**: In some cases, the time series may exhibit structural breaks, indicating sudden and significant changes in the underlying data-generating process. These breaks can result from factors such as policy interventions, economic shocks, or technological advancements.
+
+endif::artifact-type[]
+
+
+
+<<<
+
+==== Stationarity of Time Series Data
+[grid=none,frame=none,cols="50%a,50%a"]
+|===
+|
+Stationarity is a key concept in time series analysis, indicating whether the statistical properties of a time series remain constant over time. A stationary time series exhibits the following characteristics:
+
+- **Constant Mean**: The mean or average value of the time series remains constant over time.
+- **Constant Variance**: The variance or spread of the time series remains constant over time.
+- **Constant Autocovariance**: The autocovariance or correlation between observations at different time points remains constant over time.
+|
+image::Stationarity of Time Series Data.png[]
+|===
+
+ifeval::["{artifact-type}" == "IG"]
+---
+*Instructor note:* This note only apears in the instructor guide.
+endif::[]
+
+
+ifdef::artifact-type[]
+
+---
+* Stationarity is crucial in time series analysis as it simplifies the modeling process and enables more reliable forecasts.
+* Non-stationary time series often exhibit trends, seasonality, or other patterns that can obscure underlying relationships and lead to inaccurate predictions.
+* Techniques such as differencing can be used to transform non-stationary time series into stationary ones by removing trends or seasonal components.
+* Stationarity can be assessed visually through plots or statistically using tests such as the Augmented Dickey-Fuller (ADF) test or the Kwiatkowski-Phillips-Schmidt-Shin (KPSS) test.
+
+endif::artifact-type[]
+
+
+<<<
+
+==== Non-Stationarity of Time Series Data
+[grid=none,frame=none,cols="50%a,50%a"]
+|===
+|
+Non-stationarity occurs when one or more of the statistical properties of a time series change over time. Non-stationary time series may exhibit trends, seasonal patterns, or other systematic changes that violate the assumptions of stationarity. Common types of non-stationarity include:
+
+- **Trend Non-Stationarity**: The presence of a systematic trend or directional movement in the time series over time.
+- **Seasonal Non-Stationarity**: The presence of seasonal patterns or cycles that introduce systematic variations in the time series at fixed intervals.
+- **Unit Root Non-Stationarity**: The presence of a unit root in the time series, indicating that the series is not covariance-stationary.
+|
+image::Non-Stationarity of Time Series Data.png[]
+|===
+
+ifeval::["{artifact-type}" == "IG"]
+---
+*Instructor note:* This note only appears in the instructor guide.
+endif::[]
+
+ifdef::artifact-type[]
+
+---
+* **Cyclical Non-Stationarity:** In addition to seasonal patterns, time series data may exhibit cyclical non-stationarity, characterized by periodic fluctuations that are not strictly tied to fixed intervals.
+* **Structural Breaks:** Non-stationarity can also result from structural breaks, where sudden and significant changes occur in the underlying data-generating process, leading to shifts in the statistical properties of the time series.
+* **Heteroscedasticity:** Non-constant variance, known as heteroscedasticity, is another form of non-stationarity that may manifest in time series data, indicating varying levels of volatility over time.
+
+endif::artifact-type[]
+
+
+<<<
+
+==== Conclusion
+
+In conclusion, understanding the characteristics of time series data is essential for analyzing and modeling temporal patterns and trends effectively. 
+
+By identifying the components and stationarity properties of time series data, analysts can apply appropriate techniques and models for forecasting and prediction tasks.
+
+[NOTE]
+**Hands-On Exercise:**
+For hands-on experience, review and complete _Exercise 6A_ in the exercise guide for this course.
+
+ifdef::artifact-type[]
+
+---
+
+===== Additional Resources
+
+- "Time Series Analysis and Its Applications: With R Examples" by Robert H. Shumway and David S. Stoffer
+- Coursera: Time Series Analysis: https://www.coursera.org/learn/practical-time-series-analysi
+
+
+endif::artifact-type[]
+
+ifeval::["{artifact-type}" == "IG"]
+
+---
+
+*Instructor note:* This note only appears in the instructor guide.
+endif::[]
+
+<<<
+
+=== Lesson {module-number}.2: Darts for Time Series Forecasting and Modeling
+
+[grid=none,frame=none,cols="25%a,75%a"]
+|===
+|image::bullseye.svg[align="left",pdfwidth=50%]|Darts is a Python library designed for easy manipulation and forecasting of time series data. It provides a high-level interface for working with time series, making it accessible for both beginners and experienced practitioners. 
+
+In this lesson, we'll explore how to use Darts for time series forecasting and modeling.
+|
+|===
+
+ifdef::artifact-type[]
+
+---
+* Darts stands out as a Python library tailored specifically for effortless manipulation and forecasting of time series data, offering a comprehensive suite of tools and algorithms.
+* Its high-level interface abstracts away the complexities of time series analysis, allowing users of all skill levels to seamlessly work with time series data.
+* Through Darts, users can perform a wide range of tasks including time series forecasting, model evaluation, anomaly detection, and feature engineering, streamlining the entire analytical workflow.
+
+endif::artifact-type[]
+
+ifeval::["{artifact-type}" == "IG"]
+---
+*Instructor note:* This note only appears in the instructor guide.
+endif::[]
+
+<<<
+
+==== Introduction to Darts
+[grid=none,frame=none,cols="50%a,50%a"]
+|===
+|
+Darts (Data Analysis and Regression Testing System) is an open-source library developed by Unit8 for time series forecasting and modeling tasks. It offers a wide range of functionality for working with time series data, including:
+
+- **Time Series Manipulation**
+- **Modeling**
+- **Evaluation**
+- **Visualization**
+|
+|===
+
+ifeval::["{artifact-type}" == "IG"]
+---
+*Instructor note:* This note only appears in the instructor guide.
+endif::[]
+
+ifdef::artifact-type[]
+
+---
+* **Feature Engineering**
+* **Ensemble Modeling**
+* **Probabilistic Forecasting**
+* **Integration with External Libraries**
+* **Community Support and Collaboration**
+
+
+endif::artifact-type[]
+
+
+
+<<<
+
+==== Key Features of Darts
+[grid=none,frame=none,cols="50%a,50%a"]
+|===
+|
+Darts offers several key features that make it a powerful tool for time series forecasting and modeling:
+
+- **Modular Design**
+- **Extensibility**
+- **Integration with Pytorch**
+- **High-Level Interface**
+|
+|===
+
+ifeval::["{artifact-type}" == "IG"]
+---
+*Instructor note:* This note only appears in the instructor guide.
+endif::[]
+
+ifdef::artifact-type[]
+
+---
+* **Scalable**: Darts is designed to handle large-scale time series datasets efficiently, making it suitable for both small-scale experiments and production-level forecasting applications.
+* **Community Support**: Darts benefits from an active community of users and contributors who provide ongoing support, share best practices, and contribute to the library's development.
+* **Documentation and Tutorials**: Darts offers comprehensive documentation and tutorials to help users get started quickly and navigate the library's features effectively.
+* **Model Interpretability**: Darts prioritizes model interpretability, providing tools and techniques to help users understand and interpret the predictions generated by forecasting models.
+
+endif::artifact-type[]
+
+
+<<<
+
+==== Using Darts for Time Series Forecasting
+[grid=none,frame=none,cols="50%a,50%a"]
+|===
+|
+
+*Loading Time Series Data*
+
+*Manipulating Time Series Data*
+
+*Visualizing Time Series Data*
+
+*Building Forecasting Models*
+
+*Evaluating Forecasting Models*
+|
+|===
+
+ifeval::["{artifact-type}" == "IG"]
+---
+*Instructor note:* This note only appears in the instructor guide.
+endif::[]
+
+ifdef::artifact-type[]
+
+---
+
+* **Handling Seasonality and Trends:** Darts provides functionality to detect and handle seasonality and trends in time series data, aiding in the creation of more accurate forecasting models.
+* **Model Selection and Hyperparameter Tuning:** Darts offers tools for model selection and hyperparameter tuning, allowing users to optimize forecasting models for better performance.
+* **Ensemble Forecasting:** Darts supports ensemble forecasting techniques, enabling users to combine multiple forecasting models to improve prediction accuracy and robustness.
+* **Uncertainty Estimation:** Darts allows for uncertainty estimation in forecasting by providing methods to generate prediction intervals and confidence intervals for forecasted values.
+* **Integration with External Libraries:** Darts seamlessly integrates with external libraries such as scikit-learn and TensorFlow, enabling users to leverage additional machine learning and deep learning capabilities for time series forecasting tasks.
+
+endif::artifact-type[]
+
+<<<
+
+==== Conclusion
+
+In conclusion, Darts is a powerful Python library for time series forecasting and modeling, offering a wide range of functionality and a high-level interface for working with time series data. 
+
+By mastering the basics of Darts and applying its features to time series data, analysts can build accurate forecasting models and gain valuable insights into temporal patterns and trends.
+
+[NOTE]
+**Hands-On Exercise:**
+For hands-on experience, review and complete _Exercise 6B_ in the exercise guide for this course.
+
+ifdef::artifact-type[]
+
+---
+===== Additional Resources
+
+- Darts Documentation: https://github.com/unit8co/darts
+- "Forecasting Principles and Practice" by Rob J Hyndman and George Athanasopoulos
+- Coursera: Time Series Forecasting and Analysis: https://www.coursera.org/learn/practical-time-series-analysis
+
+endif::artifact-type[]
+
+ifeval::["{artifact-type}" == "IG"]
+
+---
+
+*Instructor note:* This note only appears in the instructor guide.
+endif::[]
+
+<<<
+
+=== Lesson {module-number}.3: Time Series Analysis Techniques Using Kats
+
+[grid=none,frame=none,cols="25%a,75%a"]
+|===
+|image::bullseye.svg[align="left",pdfwidth=50%]|Kats is a Python library developed by Facebook for time series analysis and forecasting. It offers a wide range of functionality for working with time series data, including time series decomposition, anomaly detection, feature engineering, and forecasting. 
+
+In this lesson, we'll explore how to use Kats for time series analysis techniques.
+|===
+
+ifeval::["{artifact-type}" == "IG"]
+---
+*Instructor note:* This note only appears in the instructor guide.
+
+endif::[]
+
+ifdef::artifact-type[]
+
+---
+* Kats is developed and maintained by Facebook's Core Data Science team, ensuring ongoing support and updates for the library.
+* The library is designed with scalability in mind, making it suitable for analyzing large volumes of time series data efficiently.
+* Kats incorporates state-of-the-art algorithms and methodologies for time series analysis, drawing from both statistical and machine learning domains.
+* Through hands-on exercises and practical examples, learners will gain proficiency in applying Kats for various time series analysis tasks, including decomposition, anomaly detection, and forecasting.
+* The comprehensive documentation and community support surrounding Kats facilitate learning and troubleshooting for users of all skill levels.
+
+endif::artifact-type[]
+
+<<<
+
+==== Introduction to Kats
+[grid=none,frame=none,cols="50%a,50%a"]
+|===
+|
+* Kats provides a comprehensive set of tools and algorithms for time series analysis and forecasting tasks. 
+* It is designed to be user-friendly and scalable, making it suitable for both exploratory analysis and production-level forecasting applications. 
+* Kats is built on top of Pytorch and supports various statistical and machine learning models for time series analysis.
+|
+|===
+
+ifeval::["{artifact-type}" == "IG"]
+---
+*Instructor note:* This note only appears in the instructor guide.
+endif::[]
+
+ifdef::artifact-type[]
+
+---
+* Kats offers an extensive collection of pre-built models and algorithms for time series analysis, spanning from classical statistical methods to state-of-the-art machine learning techniques.
+* It provides seamless integration with PyTorch, allowing users to leverage its computational capabilities for training and deploying deep learning models on time series data.
+* Kats is actively maintained and regularly updated with new features and enhancements, reflecting its commitment to advancing the field of time series analysis.
+
+endif::artifact-type[]
+
+<<<
+
+==== Key Features of Kats
+[grid=none,frame=none,cols="50%a,50%a"]
+|===
+|
+- **Time Series Decomposition**
+- **Anomaly Detection**
+- **Feature Engineering**
+- **Forecasting Models**
+- **Model Evaluation**
+|
+|===
+
+
+ifeval::["{artifact-type}" == "IG"]
+---
+*Instructor note:* This note only appears in the instructor guide.
+endif::[]
+
+
+ifdef::artifact-type[]
+
+---
+* **Automated Model Selection**: Kats offers automated model selection capabilities, allowing users to automatically choose the most suitable forecasting model based on data characteristics and performance metrics.
+* **Time Series Forecasting Templates**: Kats provides pre-built forecasting templates for common use cases such as daily, weekly, and monthly forecasting, streamlining the model-building process for users.
+* **Scalability and Parallelization**: Kats is designed to handle large-scale time series datasets efficiently, leveraging parallelization techniques to accelerate model training and inference processes.
+* **Integration with External Libraries**: Kats seamlessly integrates with other Python libraries such as Pandas, NumPy, and scikit-learn, facilitating data manipulation, preprocessing, and model evaluation tasks.
+* **Model Interpretability**: Kats offers interpretability features that enable users to understand the factors driving forecasted outcomes, aiding in decision-making processes and model refinement.
+
+endif::artifact-type[]
+
+<<<
+
+==== Using Kats for Time Series Analysis
+[grid=none,frame=none,cols="50%a,50%a"]
+|===
+|
+*Time Series Decomposition*
+
+*Anomaly Detection*
+
+*Feature Engineering*
+
+*Forecasting Models*
+
+*Model Evaluation*
+
+|
+|===
+
+ifeval::["{artifact-type}" == "IG"]
+---
+*Instructor note:* This note only appears in the instructor guide.
+endif::[]
+
+ifdef::artifact-type[]
+
+---
+* **Time Series Decomposition:**
+  - Kats offers decomposition methods such as STL decomposition and Prophet for breaking down time series data into trend, seasonality, and residual components, facilitating deeper analysis of underlying patterns.
+
+* **Anomaly Detection:**
+  - Utilizing Kats' anomaly detection algorithms, such as Seasonal Hybrid ESD (Extreme Studentized Deviate) Test, enables the identification of anomalies or outliers in time series data, aiding in anomaly detection and anomaly-aware forecasting.
+
+* **Feature Engineering:**
+  - Kats provides feature engineering utilities for generating time series features that enhance model performance. These include lagged values, rolling statistics, holiday indicators, and other engineered features tailored to specific forecasting tasks.
+
+* **Forecasting Models:**
+  - With Kats, users can leverage a variety of built-in forecasting models, including classical models like ARIMA and SARIMA, machine learning models such as Prophet and XGBoost, and deep learning models like LSTM and Transformer, enabling flexible and comprehensive forecasting approaches.
+
+* **Model Evaluation:**
+  - Kats facilitates model evaluation by offering a range of evaluation metrics such as mean absolute error (MAE), mean squared error (MSE), and mean absolute percentage error (MAPE), allowing users to assess the accuracy and performance of their forecasting models effectively.
+
+endif::artifact-type[]
+
+
+
+<<<
+
+==== Conclusion
+
+In conclusion, Kats is a powerful Python library for time series analysis and forecasting, offering a wide range of functionality and algorithms for working with time series data. 
+
+By mastering the basics of Kats and applying its features to time series analysis techniques, analysts can gain valuable insights into temporal patterns and trends and build accurate forecasting models.
+
+[NOTE]
+**Hands-On Exercise:**
+For hands-on experience, review and complete _Exercise 6C_ in the exercise guide for this course.
+
+ifdef::artifact-type[]
+
+---
+===== Additional Resources
+
+- Kats Documentation: https://facebookresearch.github.io/Kats/
+- "Forecasting: Principles and Practice" by Rob J Hyndman and George Athanasopoulos
+- Coursera: Time Series Analysis and Forecasting: https://www.coursera.org/learn/practical-time-series-analysislysis: https://www.coursera.org/learn/practical-time-series-analysis
+
+endif::artifact-type[]
+
+ifeval::["{artifact-type}" == "IG"]
+
+---
+
+*Instructor note:* After allowing time for the hands-on exercise, transition to the next lesson in the module.
+
+endif::[]
+
+<<<
+
+=== Lesson {module-number}.4: Extract Features from Time Series Data Using Tsfresh
+
+[grid=none,frame=none,cols="25%a,75%a"]
+|===
+|image::bullseye.svg[align="left",pdfwidth=50%]|Tsfresh is a Python library designed for automatic feature extraction from time series data. It offers a wide range of features designed to capture various aspects of time series dynamics, including statistical properties, shape characteristics, and frequency domain attributes. 
+
+In this lesson, we'll explore how to use Tsfresh to extract features from time series data.
+|
+|===
+
+ifeval::["{artifact-type}" == "IG"]
+---
+*Instructor note:* This note only appears in the instructor guide.
+endif::[]
+
+ifdef::artifact-type[]
+
+---
+* Tsfresh automates the process of feature extraction from time series data, saving time and effort compared to manual feature engineering.
+* It employs advanced algorithms to extract a diverse set of features, including statistical properties like mean, median, and standard deviation, as well as shape characteristics such as slope and skewness.
+* Tsfresh supports both univariate and multivariate time series data, allowing users to extract features from multiple variables simultaneously.
+* The library provides extensive documentation and tutorials to guide users through the feature extraction process, making it accessible to both beginners and experienced practitioners.
+* Users can leverage Tsfresh's feature selection capabilities to identify the most relevant features for their analysis, reducing dimensionality and improving model performance.
+* In addition to traditional time series data, Tsfresh can handle irregularly sampled time series and missing values, enhancing its versatility in real-world applications.
+
+endif::artifact-type[]
+
+<<<
+
+==== Introduction to Tsfresh
+[grid=none,frame=none,cols="50%a,50%a"]
+|===
+|
+* Tsfresh provides a systematic approach to feature extraction from time series data, allowing users to generate a large set of features automatically without manual intervention. 
+* It is designed to be scalable and efficient, making it suitable for analyzing large volumes of time series data in real-world applications. 
+* Tsfresh supports both univariate and multivariate time series data and can be integrated with popular machine learning libraries for predictive modeling tasks.
+|
+|===
+
+ifeval::["{artifact-type}" == "IG"]
+---
+*Instructor note:* This note only appears in the instructor guide.
+endif::[]
+
+ifdef::artifact-type[]
+
+---
+* Tsfresh employs advanced algorithms to extract features from time series data automatically, saving time and effort in feature engineering tasks.
+* Its scalability and efficiency make it well-suited for processing large volumes of time series data commonly encountered in real-world applications, such as IoT sensor data and financial market data.
+* In addition to univariate time series data, Tsfresh also supports multivariate time series data, enabling the extraction of features from multiple variables or channels simultaneously.
+* Tsfresh seamlessly integrates with popular machine learning libraries like scikit-learn and TensorFlow, allowing users to leverage extracted features directly in predictive modeling tasks.
+
+endif::artifact-type[]
+
+<<<
+
+==== Key Features of Tsfresh
+[grid=none,frame=none,cols="50%a,50%a"]
+|===
+|
+- **Automatic Feature Extraction**
+- **Comprehensive Feature Set**
+- **Scalability**
+- **Integration with Machine Learning**
+|
+|===
+
+ifeval::["{artifact-type}" == "IG"]
+---
+*Instructor note:* This note only appears in the instructor guide.
+endif::[]
+
+ifdef::artifact-type[]
+
+---
+* **Extensive Feature Extraction**: In addition to statistical, shape, and frequency domain features, Tsfresh also extracts features related to time series complexity, trend, and entropy, providing a comprehensive representation of time series data.
+* **Automated Parameter Tuning**: Tsfresh automates the process of parameter tuning for feature extraction, reducing the need for manual adjustment and enhancing efficiency.
+* **Support for Multivariate Time Series**: Tsfresh supports the extraction of features from multivariate time series data, enabling users to capture dependencies and relationships between different variables.
+* **Advanced Feature Selection Techniques**: Tsfresh offers advanced feature selection methods, including correlation-based filtering and forward feature selection, to identify the most relevant features for modeling.
+
+endif::artifact-type[]
+
+<<<
+
+==== Using Tsfresh for Feature Extraction
+
+[grid=none,frame=none,cols="50%a,50%a"]
+|===
+|
+*Installing Tsfresh*
+
+- Install Tsfresh using pip: `pip install tsfresh`
+
+*Extracting Features*
+
+
+*Feature Selection*
+|
+|===
+
+ifeval::["{artifact-type}" == "IG"]
+---
+*Instructor note:* This note only appears in the instructor guide.
+endif::[]
+
+ifdef::artifact-type[]
+
+---
+* **Automated Feature Extraction:** Tsfresh streamlines the feature extraction process by automatically generating a comprehensive set of features from time series data, sparing users from manual feature engineering efforts.
+* **Broad Feature Spectrum:** Tsfresh encompasses a wide array of feature categories, including statistical, shape, and frequency domain features, enabling a holistic representation of time series characteristics.
+* **Parameter Customization:** Users can tailor the feature extraction process to their specific needs by adjusting parameters such as feature types, extraction methods, and window sizes, allowing for flexibility and adaptability in feature generation.
+
+endif::artifact-type[]
+
+<<<
+    
+==== Conclusion
+
+In conclusion, Tsfresh is a powerful tool for automatic feature extraction from time series data, offering a wide range of features designed to capture various aspects of time series dynamics. 
+
+By leveraging Tsfresh for feature extraction, analysts can streamline the feature engineering process and focus on building accurate predictive models for time series data.
+
+[NOTE]
+**Hands-On Exercise:**
+For hands-on experience, review and complete _Exercise 6D_ in the exercise guide for this course.
+
+ifdef::artifact-type[]
+
+---
+===== Additional Resources
+
+- Tsfresh Documentation: https://tsfresh.readthedocs.io/en/latest/
+- "Feature Engineering for Machine Learning: Principles and Techniques for Data Scientists" by Alice Zheng and Amanda Casari
+- Coursera: Machine Learning for Time Series Data Analysis: https://www.coursera.org/learn/practical-time-series-analysis
+endif::artifact-type[]
+
+ifeval::["{artifact-type}" == "IG"]
+
+---
+
+*Instructor note:* This is the last lesson, in the last module of the course. Transition to class conclusion.
+endif::[]
