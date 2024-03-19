@@ -1,1 +1,1 @@
-Publically available content from Public Information Limited (P.I.L.), LLC.
+Publicly available content from Public Information Limited (P.I.L.), LLC.
